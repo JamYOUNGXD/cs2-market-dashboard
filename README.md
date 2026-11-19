@@ -1,2 +1,3 @@
 # cs2-market-dashboard
 market dashboard-CS飾品網頁
+GitHub automatic deployment test.
