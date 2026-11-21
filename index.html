@@ -5,89 +5,116 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CS 飾品市場日報</title>
 <style>
-:root{color-scheme:light;--bg:#f3f5f7;--sf:#fff;--tx:#17202a;--mu:#5d6b7a;--ln:#dde3e9;--ac:#2563c9;--up:#d6322e;--dn:#1a8f4c;--wn:#b9770e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12171d;--sf:#1b222a;--tx:#e6ebf0;--mu:#93a1b0;--ln:#2d3743;--ac:#6ea2f5;--up:#ff6b66;--dn:#4cc982;--wn:#e6a93d}}
-:root[data-theme="dark"]{color-scheme:dark;--bg:#12171d;--sf:#1b222a;--tx:#e6ebf0;--mu:#93a1b0;--ln:#2d3743;--ac:#6ea2f5;--up:#ff6b66;--dn:#4cc982;--wn:#e6a93d}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+:root{color-scheme:light;--bg:#f3f5f9;--bg1:#f8f6f9;--bg2:#edf1f7;--sf:#fff;--tx:#1f2430;--mu:#667085;--ln:#e1e6ee;--ac:#d6457f;--acx:#fff;--up:#d92d3a;--dn:#12a05c;--wn:#5b6fc9;--nav:#1c2340;--row:#f8f9fc;--hv:#fdeef4;--navt:#eef1f8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f131c;--bg1:#151a29;--bg2:#0e1420;--sf:#171d2b;--tx:#e8ecf4;--mu:#98a2b8;--ln:#283044;--ac:#f08ab4;--acx:#2a0f1c;--up:#ff6b6b;--dn:#3ecf8e;--wn:#8ea2f0;--nav:#090c13;--row:#1b2232;--hv:#2b2030}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0f131c;--bg1:#151a29;--bg2:#0e1420;--sf:#171d2b;--tx:#e8ecf4;--mu:#98a2b8;--ln:#283044;--ac:#f08ab4;--acx:#2a0f1c;--up:#ff6b6b;--dn:#3ecf8e;--wn:#8ea2f0;--nav:#090c13;--row:#1b2232;--hv:#2b2030}
+html{background:var(--bg);scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
-main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
-h1{font-size:26px;margin:0 0 4px;letter-spacing:.02em}
-h2{font-size:18px;margin:0 0 4px}
-.sub{color:var(--mu);margin:0 0 20px;font-size:13px}
-section{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:16px;margin-bottom:16px}
+body{margin:0;min-height:100vh;background:var(--bg) linear-gradient(160deg,var(--bg1),var(--bg2)) fixed;color:var(--tx);font:15px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--nav);z-index:30}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--nav);color:var(--navt);border-bottom:2px solid var(--ac)}
+.bar{max-width:1040px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:.03em;white-space:nowrap}
+.brand i{width:14px;height:14px;background:var(--ac);transform:rotate(45deg);border-radius:3px}
+.nav nav{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0}
+.nav nav a{color:var(--navt);opacity:.75;text-decoration:none;padding:6px 12px;border-radius:6px;font-size:14px;white-space:nowrap}
+.nav nav a:hover{opacity:1;background:rgba(255,255,255,.09)}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.lang{display:flex}
+.lang button{border:1px solid rgba(255,255,255,.28);background:transparent;color:var(--navt);padding:3px 10px;font:inherit;font-size:12px;cursor:pointer;margin-left:-1px}
+.lang button:first-child{border-radius:6px 0 0 6px;margin-left:0}.lang button:last-of-type{border-radius:0 6px 6px 0}
+.lang button[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:var(--acx);font-weight:600}
+.nav label{color:var(--navt)!important;font-size:12px!important;opacity:.85}
+main{max-width:1040px;margin:0 auto;padding:6px 16px 48px}
+h1{font-size:24px;margin:18px 0 2px;letter-spacing:.02em}
+h2{font-size:17px;margin:0 0 4px;padding-left:10px;border-left:4px solid var(--ac);line-height:1.3}
+.sub{color:var(--mu);margin:0 0 16px;font-size:13px}
+section{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:16px 18px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
 .note{color:var(--mu);font-size:13px;margin:0 0 12px}
-.kpi{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:12px}
-.kpi b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
-.kpi span{color:var(--mu);font-size:13px}
-.seg button{border:1px solid var(--ln);background:transparent;color:var(--tx);padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
-.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0;border-left:0}
-.seg button[aria-pressed=true]{background:var(--ac);color:#fff;border-color:var(--ac)}
-.wrap{overflow-x:auto}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.kpi>div{background:var(--row);border:1px solid var(--ln);border-radius:8px;padding:10px 14px}
+.kpi b{display:block;font-size:22px;font-variant-numeric:tabular-nums;line-height:1.3}
+.kpi span{color:var(--mu);font-size:12px}
+.seg{display:inline-flex;margin-bottom:6px}
+.seg button{border:1px solid var(--ln);background:var(--sf);color:var(--tx);padding:4px 14px;font:inherit;font-size:13px;cursor:pointer;margin-left:-1px}
+.seg button:first-child{border-radius:6px 0 0 6px;margin-left:0}.seg button:last-child{border-radius:0 6px 6px 0}
+.seg button[aria-pressed=true]{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weight:600}
+.wrap{overflow:auto}
 table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
-th,td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--ln);white-space:nowrap}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--ln);white-space:nowrap}
 th:first-child,td:first-child{text-align:left}
-th{color:var(--mu);font-weight:500;font-size:13px}
+th{color:var(--mu);font-weight:500;font-size:12px;position:sticky;top:0;background:var(--sf);z-index:1}
+tr:nth-child(even) td{background:var(--row)}
+tr:hover td{background:var(--hv)}
+td.up,td.dn{font-weight:600}
 .up{color:var(--up)}.dn{color:var(--dn)}
-.rec{border-top:1px solid var(--ln);padding:10px 0}
-.rec:first-of-type{border-top:0}
+.star{color:var(--ac)}.st{color:var(--ac);font-weight:600}.im{margin-left:6px;font-size:11px;line-height:1.5;padding:0 5px;border:1px solid var(--ln);border-radius:4px;text-decoration:none;color:var(--ac)}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.chips button{border:1px solid var(--ln);background:var(--sf);color:var(--tx);border-radius:14px;padding:2px 12px;font:inherit;font-size:13px;cursor:pointer}.chips button[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:var(--acx)}
+.wr{display:inline-block;font-size:11px;line-height:1.5;padding:0 6px;border:1px solid var(--ln);border-radius:4px;color:var(--mu);margin-left:6px;vertical-align:1px}
+.rec{border:1px solid var(--ln);border-radius:8px;padding:10px 14px;margin-bottom:8px;background:var(--row)}
 .rec h3{margin:0;font-size:15px}
-.tag{display:inline-block;font-size:12px;padding:0 8px;border-radius:10px;border:1px solid currentColor;margin-left:8px;vertical-align:1px}
-.rec p{margin:2px 0 0;color:var(--mu);font-size:13px}
+.tag{display:inline-block;font-size:12px;padding:0 8px;border-radius:10px;border:1px solid currentColor;margin-left:8px;vertical-align:1px;font-weight:500}
+.rec p{margin:3px 0 0;color:var(--mu);font-size:13px}
 textarea{width:100%;min-height:90px;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:8px;font:12px/1.5 ui-monospace,Menlo,monospace}
-.btn{background:var(--ac);color:#fff;border:0;border-radius:6px;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer;margin:8px 8px 0 0}
-.btn.alt{background:transparent;color:var(--tx);border:1px solid var(--ln)}
+.btn{background:var(--ac);color:var(--acx);font-weight:600;border:0;border-radius:6px;padding:7px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;margin:8px 8px 0 0}
+.btn.alt{background:transparent;color:var(--tx);border:1px solid var(--ln);font-weight:400}
 #msg{font-size:13px;color:var(--wn)}
-button:focus-visible,textarea:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+a{color:var(--ac)}
+th[data-t]{cursor:pointer;user-select:none}th[data-t]:hover{color:var(--tx)}
+button:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
 svg text{fill:var(--mu);font-size:10px}
-.lang{display:flex;gap:8px;margin:0 0 14px}.lang button{border:1px solid var(--ln);background:var(--sf);color:var(--tx);border-radius:6px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}.lang button[aria-pressed=true]{background:var(--ac);color:#fff;border-color:var(--ac)}
+@media (max-width:640px){.bar{gap:8px}.nav nav{order:3;flex-basis:100%}section{padding:14px}}
 </style>
 </head>
 <body>
+<header class="nav"><div class="bar"><div class="brand"><i></i><span>CS 飾品行情</span></div><nav><a href="#s-real">刀跌幅榜</a><a href="#s-knife">刀漲幅榜</a><a href="#s-glove">手套榜單</a><a href="#s-sales">銷量榜</a><a href="#s-buy">買點建議</a><a href="#s-import">匯入資料</a></nav><div class="ctl"><div class="lang" role="group" aria-label="Language" style="display:none"><button id="ltw">繁體中文（台灣）</button><button id="lcn">简体中文（中国大陆）</button></div><div class="lang" role="group" aria-label="Currency"><button id="ccny"></button><button id="ctwd"></button><label id="rlab" hidden style="font-size:13px;color:var(--mu);align-self:center"><span id="rl"></span> <input id="rate" type="number" step="0.01" min="0.1" style="width:72px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:3px 6px;font:inherit"></label></div></div></div></header>
 <main>
-<div class="lang" role="group" aria-label="Language" style="display:none"><button id="ltw">繁體中文（台灣）</button><button id="lcn">简体中文（中国大陆）</button></div>
-<div class="lang" role="group" aria-label="Currency"><button id="ccny"></button><button id="ctwd"></button><label id="rlab" hidden style="font-size:13px;color:var(--mu);align-self:center"><span id="rl"></span> <input id="rate" type="number" step="0.01" min="0.1" style="width:72px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:3px 6px;font:inherit"></label></div>
+
+
 <h1 data-k="title"></h1>
 <p class="sub" id="meta"></p>
-<section><h2 data-k="rt"></h2><p class="note" id="rsrc"></p><div class="kpi" id="rkpi"></div><div class="wrap" style="max-height:480px;overflow:auto"><table id="rtab"></table></div><div id="rrec" style="margin-top:8px"></div><p class="note" data-k="rnote" style="margin-top:12px"></p></section>
-<section><h2 data-k="kt"></h2><p class="note" data-k="kn"></p><input id="kq" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="ktab"></table></div></section>
-<section><h2 data-k="gt"></h2><p class="note" data-k="gn"></p><input id="gq" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="gtab"></table></div></section>
+<div class="rec" id="stamp" style="margin-bottom:14px"></div>
+<section id="s-real"><h2 data-k="rt"></h2><p class="note" id="rsrc"></p><div class="kpi" id="rkpi"></div><div class="wrap" style="max-height:480px;overflow:auto"><table id="rtab"></table></div><div id="rrec" style="margin-top:8px"></div><p class="note" data-k="rnote" style="margin-top:12px"></p></section>
+<section id="s-knife"><h2 data-k="kt"></h2><p class="note" data-k="kn"></p><input id="kq" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="ktab"></table></div></section>
+<section id="s-glove"><h2 data-k="gt"></h2><p class="note" data-k="gn"></p><input id="gq" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="gtab"></table></div></section>
 <section><h2 data-k="lt"></h2><p class="note" data-k="ln"></p><input id="gq2" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="gtab2"></table></div></section>
-<section><h2 data-k="st"></h2><p class="note" data-k="sn"></p><input id="sq" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="stab"></table></div></section>
+<section id="s-sales"><h2 data-k="st"></h2><p class="note" data-k="sn"></p><input id="sq" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="stab"></table></div></section>
 <section><h2 data-k="ut"></h2><p class="note" data-k="un"></p><input id="uq" type="search" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:480px;overflow:auto"><table id="utab"></table></div></section>
 <section><h2 data-k="sph"></h2><p class="note" data-k="spn"></p><textarea id="sp" style="min-height:70px"></textarea><div><button class="btn" id="spgo" data-k="spgo"></button><span id="spm" style="font-size:13px;color:var(--wn)"></span></div></section>
 <section><h2 data-k="h1"></h2><p class="note" data-k="n1"></p><div class="kpi" id="kpi"></div>
 <div class="seg" role="group"><button id="bq" aria-pressed="true"></button><button id="bt" aria-pressed="false"></button></div>
 <div class="wrap"><svg id="chart" viewBox="0 0 640 190" width="100%" role="img"></svg></div></section>
 <section><h2 data-k="h2"></h2><p class="note" data-k="n2"></p><div class="wrap"><table id="drop"></table></div></section>
-<section><h2 data-k="h3"></h2><p class="note" data-k="n3"></p><div id="recs"></div><p class="note" id="wd" style="margin-top:12px"></p></section>
-<section><h2 data-k="h4"></h2><p class="note" data-k="n4"></p><textarea id="csv"></textarea>
+<section id="s-buy"><h2 data-k="h3"></h2><p class="note" data-k="n3"></p><div class="kpi" id="bmk"></div><div class="chips" id="bchips"></div><input id="bq2" type="search" placeholder="搜尋名稱" style="width:100%;max-width:280px;margin-bottom:8px;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:5px 8px;font:inherit"><div class="wrap" style="max-height:560px;overflow:auto"><table id="btab"></table></div><p class="note" id="wd" style="margin-top:12px"></p></section>
+<section id="s-hist"></section>
+<section id="s-import"><h2 data-k="h4"></h2><p class="note" data-k="n4"></p><textarea id="csv"></textarea>
 <div><button class="btn" id="go"></button><button class="btn alt" id="reset"></button><input type="file" id="file" accept=".csv,.txt"> <span id="msg"></span></div></section>
 </main>
+<script src="js/data-store.js"></script>
+<script src="js/history-chart.js"></script>
 <script>
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmt=n=>Math.round(n).toLocaleString('en-US'),pc=n=>(n>0?'+':'')+(n*100).toFixed(1)+'%',cls=n=>n>0?'up':n<0?'dn':'';
-const T={tw:{lang:'zh-Hant',title:'CS 飾品市場日報',rt:'真實行情快照：刀跌幅榜（近 30 天）',cu:['人民幣 ¥','新台幣 NT$'],ut:'手套 30 日銷量榜（前 100 名）',un:'資料：SkinPan 手套分類銷量排名，2026-11-19 複製，幣別為人民幣，區間以 30 天標示。這 100 名裡只有 3 件上漲（奶油細條紋戰痕累累 +2.71%、逐滄浪戰痕累累 +1.21%、日芒戰痕累累 +1.13%）；銷量最大的集中在 ¥150 到 ¥300 的久經沙場、戰痕累累款，榜首是摩托手套｜交運（久經沙場，30 日成交 3,347 件）。這裡沒有圖片。',st:'刀 30 日銷量榜（前 100 名）',sn:'資料：SkinPan 匕首分類銷量排名，2026-11-19 複製，幣別為人民幣，區間以 30 天標示。這 100 名的價格幾乎都落在 ¥200 到 ¥1,200 之間，銷量集中在 ¥200 到 ¥400 的久經沙場款；只有 1 件上漲（求生匕首｜枯焦之色，+2.28%）。這裡沒有圖片。',lt:'手套 30 日跌幅榜（前 100 名）',ln:'資料：SkinPan 手套分類跌幅排名，2026-11-19 複製，幣別為人民幣，區間以 30 天標示。第 1 名駕駛手套｜逐滄浪（破損不堆）跌了 34.5%，其餘大多落在 −8% 到 −16% 之間。名稱已轉成繁體並套用台灣用語，這裡沒有圖片。',gt:'手套 30 日漲幅榜（前 100 名）',gn:'資料：SkinPan 手套分類漲幅排名，2026-11-19 複製，幣別為人民幣，區間以 30 天標示。前 100 名裡只有 9 件上漲，最多漲 34.9%（第 1 名只成交 99 件、量比 0.26，樣本偏薄），第 100 名已跌到 −5.73%。名稱已轉成繁體並套用台灣用語，這裡沒有圖片。',kt:'刀 30 日漲幅榜（匕首分類，前 100 名）',kn:'資料：SkinPan 匕首分類 30 天漲幅排名，2026-11-20 複製，幣別為人民幣。榜單排到第 100 名時漲幅已是 −0.25%：在 SkinPan 計入的刀（日成交至少 1 件）裡，只有 90 件上漲，最多漲 19.5%。跌最凶的在榜單另一端，不在這份資料裡。這裡只有名稱，沒有圖片。',ksr:'搜尋名稱，例如 蝴蝶刀',kth:['名次','飾品','現價','30 日漲幅','30 日成交','成交額','量比','掛單'],sph:'貼上 SkinPan 榜單（最多 100 件）',spn:'到 SkinPan 的<a href="https://skinpan.com/zh/market/rankings/losers" target="_blank" rel="noopener" style="color:var(--ac)">跌幅排名</a>，分類選匕首或手套、區間選 30 天，全選表格後貼到下面。系統只保留刀與手套，最多 100 件，會取代上方的表格。貼上的名稱會自動轉成繁體。本頁無法載入外部圖片，原有的 7 件可點名稱到 SkinPan 看圖。',spgo:'套用榜單',spe:'沒有讀到刀或手套的資料，請確認複製的是完整表格。',spo:n=>`已套用 ${n} 件。`,rl:'匯率 1 人民幣 ≈ 新台幣',rcn:'新台幣金額是依匯率換算的參考值，不是實際成交價。',rs:d=>`資料來源：SkinPan 大盤與跌幅榜，${d} 讀取。`,rk:['匕首指數','手套指數','大盤指數'],rsales:'日均成交',rth:['飾品','現價','30 日跌幅','30 日成交','成交額','量比','掛單'],rsg:{t:'樣本太薄',u:'分批觀察',d:'先觀望'},rsig:{t:(s,l)=>`30 日只成交 ${s} 件、掛單 ${l} 件，樣本太薄，價格容易被單筆交易扭曲，先不要當成買點。`,u:(c,v)=>`跌 ${c}%，成交量是均量的 ${v} 倍，賣壓可能正在釋放，可小額分批觀察。`,d:(c,v)=>`跌 ${c}%，但量比只有 ${v}，還沒有止跌訊號，先觀望。`},rnote:'SkinPan 刀類與手套的跌幅榜前 100 名都已收錄。它只提供 30 日累計的價量，沒有逐日資料，因此下面三段（每日成交量、單日跌幅、入手時機）仍是模擬資料。以上不構成投資建議。',h1:'成交概況',n1:'未匯入逐日資料時，顯示 SkinPan 榜單頁面頂部的 30 日累計成交（匕首、手套各一份，人民幣計價）。匯入逐日資料後，這裡會改成每日成交量圖表。',q:'成交件數',t:'成交額',h2:'30 日跌幅前十名（刀與手套，真實資料）',n2:'合併 SkinPan 刀類與手套跌幅榜各前 100 名，取跌幅最大的 10 件。量比 = 近 3 日平均成交量 ÷ 30 日平均成交量。',h3:'入手時機建議（蝴蝶刀、骷髅匕首、M9 刺刀、爪子刀）',n3:'只看這四種刀在 SkinPan 刀類跌幅榜前 100 名中的品項（沒進榜的款式不在資料裡）。30 日成交少於 40 件、或掛單不到 60 件的標為樣本太薄並排在最後，其餘依「跌幅」與「量比」排序分級。榜單只有 30 日累計資料，沒有逐日價格，所以不提供「每週哪一天最便宜」。這是規則式統計，不保證未來走勢，也不是投資建議。',h4:'匯入你自己的資料',n4:'目前顯示的是模擬資料。網頁無法直接連到 Steam 市場，請從你的資料來源匯出後貼上，格式：<code>日期,物品名稱,價格,成交量</code>（每行一筆，日期如 2026-11-20，至少 10 件物品、10 天以上）。價格請填人民幣，顯示時可切換成新台幣。物品名稱可用英文、台灣或中國大陸用語。也可以直接貼上 Apify「Steam Community Market Scraper」匯出的 JSON 或 CSV（每筆需含 marketHashName、time、medianPrice、volume），系統會自動把逐小時資料合併成每日。',go:'套用資料',reset:'還原模擬資料',wk:'日一二三四五六',pre:'週',src:{sim:'模擬資料',user:'你匯入的資料'},meta:(s,a,b,n)=>`資料來源：${s}　涵蓋 ${a} 至 ${b}，共 ${n} 件物品`,k1:'今日成交件數',vs:'較昨日',k2:'今日成交額',k3:'30 日平均每日件數',max:'最高',unit:' 件',unit2:'（成交額）',wkend:'淡色為週末',th:['物品','現價','日跌幅','7 日','距均價','量比'],sg:{b:'分批買進',w:'先觀察',h:'不追高',n:'定期小額'},ry:(d,v)=>`價格低於 30 日均價 ${d}%，且近 3 日量能放大 ${v} 倍：賣壓可能正在釋放，可先買三分之一，觀察 2–3 天再加碼。`,rw:(d,v)=>`價格低於均價 ${d}%，但量能只有 ${v} 倍，屬縮量下跌，尚無止跌訊號，等量能回升再進場。`,rh:d=>`價格高於 30 日均價 ${d}%，短線已漲多，等回檔較安全。`,rn:d=>`價格在均價附近（${d}），沒有明顯折價，想持有可小額分批。`,best:(w,d)=>` 歷史上${w}平均價最低（比均價低 ${d}%），可優先挑這天下單。`,all:(w,d)=>`全市場平均來看，${w}的價格相對最低（比各自 30 日均價低 ${d}%）。樣本只有約 4 個週期，差距小時請當參考而非規律。`,err:'資料不足：至少需要 10 件物品、每件 10 天以上。'},
-cn:{lang:'zh-Hans',title:'CS 饰品市场日报',rt:'真实行情快照：刀跌幅榜（近 30 天）',cu:['人民币 ¥','新台币 NT$'],lt:'手套 30 日跌幅榜（前 100 名）',ln:'数据：SkinPan 手套分类跌幅排名，2026-11-19 复制，币种为人民币，区间按 30 天标示。第 1 名驾驶手套｜逐沧浪（破损不堆）跌了 34.5%，其余大多落在 −8% 到 −16% 之间。名称按原样显示，这里没有图片。',gt:'手套 30 日涨幅榜（前 100 名）',gn:'数据：SkinPan 手套分类涨幅排名，2026-11-19 复制，币种为人民币，区间按 30 天标示。前 100 名里只有 9 件上涨，最多涨 34.9%（第 1 名只成交 99 件、量比 0.26，样本偏薄），第 100 名已跌到 −5.73%。名称按原样显示，这里没有图片。',kt:'刀 30 日涨幅榜（匕首分类，前 100 名）',kn:'数据：SkinPan 匕首分类 30 天涨幅排名，2026-11-20 复制，币种为人民币。榜单排到第 100 名时涨幅已是 −0.25%：在 SkinPan 计入的刀（日成交至少 1 件）里，只有 90 件上涨，最多涨 19.5%。跌得最凶的在榜单另一端，不在这份数据里。这里只有名称，没有图片。',ksr:'搜索名称，例如 蝴蝶刀',kth:['名次','饰品','现价','30 日涨幅','30 日成交','成交额','量比','挂单'],sph:'粘贴 SkinPan 榜单（最多 100 件）',spn:'到 SkinPan 的<a href="https://skinpan.com/zh/market/rankings/losers" target="_blank" rel="noopener" style="color:var(--ac)">跌幅排名</a>，分类选匕首或手套、区间选 30 天，全选表格后粘贴到下面。系统只保留刀与手套，最多 100 件，会替换上方的表格。粘贴的名称按原样显示。本页无法加载外部图片，原有的 7 件可点名称到 SkinPan 看图。',spgo:'应用榜单',spe:'没有读到刀或手套的数据，请确认复制的是完整表格。',spo:n=>`已应用 ${n} 件。`,rl:'汇率 1 人民币 ≈ 新台币',rcn:'新台币金额是按汇率换算的参考值，不是实际成交价。',rs:d=>`数据来源：SkinPan 大盘与跌幅榜，${d} 读取。`,rk:['匕首指数','手套指数','大盘指数'],rsales:'日均成交',rth:['饰品','现价','30 日跌幅','30 日成交','成交额','量比','挂单'],rsg:{t:'样本太薄',u:'分批观察',d:'先观望'},rsig:{t:(s,l)=>`30 日只成交 ${s} 件、挂单 ${l} 件，样本太薄，价格容易被单笔交易扭曲，先不要当成买点。`,u:(c,v)=>`跌 ${c}%，成交量是均量的 ${v} 倍，抛压可能正在释放，可小额分批观察。`,d:(c,v)=>`跌 ${c}%，但量比只有 ${v}，还没有止跌信号，先观望。`},rnote:'SkinPan 刀类与手套的跌幅榜前 100 名都已收录。它只提供 30 日累计的价量，没有逐日数据，因此下面三段（每日成交量、单日跌幅、入手时机）仍是模拟数据。以上不构成投资建议。',h1:'每日成交量（模拟数据）',n1:'近 30 天全市场合计。红涨绿跌。',q:'成交数量',t:'成交额',h2:'单日跌幅前十名（模拟数据）',n2:'以最新一日收盘价对比前一日。量比 = 近 3 日平均成交量 ÷ 30 日平均成交量。',h3:'入手时机建议（模拟数据）',n3:'按“价格低于 30 日均价的幅度”和“成交量变化”打分，并统计每周哪一天平均价格最低。这是基于历史数据的规则统计，不保证未来走势，也不构成投资建议。',h4:'导入你自己的数据',n4:'当前显示的是模拟数据。网页无法直接连接 Steam 市场，请从你的数据来源导出后粘贴，格式：<code>日期,饰品名称,价格,成交量</code>（每行一条，日期如 2026-11-20，至少 10 件饰品、10 天以上）。价格请填人民币，显示时可切换成新台币。饰品名称可用英文、台湾或大陆叫法。也可以直接粘贴 Apify “Steam Community Market Scraper” 导出的 JSON 或 CSV（每条需含 marketHashName、time、medianPrice、volume），系统会自动把逐小时数据合并成每日。',go:'应用数据',reset:'还原模拟数据',wk:'日一二三四五六',pre:'周',src:{sim:'模拟数据',user:'你导入的数据'},meta:(s,a,b,n)=>`数据来源：${s}　覆盖 ${a} 至 ${b}，共 ${n} 件饰品`,k1:'今日成交数量',vs:'较昨日',k2:'今日成交额',k3:'30 日日均成交数量',max:'最高',unit:' 件',unit2:'（成交额）',wkend:'浅色为周末',th:['饰品','现价','日跌幅','7 日','距均价','量比'],sg:{b:'分批买入',w:'先观望',h:'不追高',n:'定投小额'},ry:(d,v)=>`价格低于 30 日均价 ${d}%，且近 3 日成交量放大 ${v} 倍：抛压可能正在释放，可先买三分之一，观察 2–3 天再加仓。`,rw:(d,v)=>`价格低于均价 ${d}%，但成交量只有 ${v} 倍，属于缩量下跌，暂无止跌信号，等成交量回升再入场。`,rh:d=>`价格高于 30 日均价 ${d}%，短线涨幅较大，等回调更稳妥。`,rn:d=>`价格在均价附近（${d}），没有明显折价，想持有可小额分批买入。`,best:(w,d)=>` 历史上${w}平均价最低（比均价低 ${d}%），可优先挑这天下单。`,all:(w,d)=>`全市场平均来看，${w}的价格相对最低（比各自 30 日均价低 ${d}%）。样本只有约 4 个周期，差距小时请仅作参考，不要当作规律。`,err:'数据不足：至少需要 10 件饰品、每件 10 天以上。'}};
+const T={tw:{lang:'zh-Hant',title:'CS 飾品市場日報',rt:'真實行情快照：刀跌幅榜（近 30 天）',cu:['人民幣 ¥','新台幣 NT$'],ut:'手套 30 日銷量榜（前 100 名）',un:'資料：SkinPan 手套分類銷量排名，2026-11-21 複製，幣別為人民幣，區間以 30 天標示。這 100 名裡只有 2 件上漲（運動手套｜奶油細條紋戰痕累累 +1.40%、駕駛手套｜逐滄浪戰痕累累 +0.12%）；銷量最大的集中在 ¥157 到 ¥300 的久經沙場、戰痕累累款，榜首是摩托手套｜交運（久經沙場，30 日成交 3,319 件）。這裡沒有圖片。',st:'刀 30 日銷量榜（前 100 名）',sn:'資料：SkinPan 匕首分類銷量排名，2026-11-21 複製，幣別為人民幣，區間以 30 天標示。這 100 名的價格落在 ¥211 到 ¥1,165 之間，銷量集中在 ¥210 到 ¥400 的久經沙場款，榜首是暗影雙匕｜澄澈之水（久經沙場，30 日成交 2,558 件）；只有 1 件上漲（求生匕首｜枯焦之色，+1.73%）。這裡沒有圖片。',lt:'手套 30 日跌幅榜（前 100 名）',ln:'資料：SkinPan 手套分類跌幅排名，2026-11-21 複製，幣別為人民幣。第 1 名駕駛手套｜逐滄浪（破損不堪）跌了 33.7%，第 2 名起落在 −15.7% 到 −8.2% 之間。名稱已轉成繁體並套用台灣用語，這裡沒有圖片。',gt:'手套 30 日漲幅榜（前 100 名）',gn:'資料：SkinPan 手套分類 30 天漲幅排名，2026-11-21 複製，幣別為人民幣。前 100 名裡只有 8 件上漲，最多漲 30.4%（第 1 名摩托手套｜第三特種兵連略有磨損，只成交 93 件、量比 0.32，樣本偏薄），第 100 名已跌到 −5.76%。這裡沒有圖片。',kt:'刀 30 日漲幅榜（匕首分類，前 100 名）',kn:'資料：SkinPan 匕首分類 30 天漲幅排名，2026-11-21 複製，幣別為人民幣。前 100 名裡有 92 件上漲，最多漲 12.9%（第 1 名 StatTrak™ 求生匕首｜藍鋼戰痕累累，30 日只成交 46 件，樣本偏薄），第 100 名已是 −0.24%。這裡只有名稱，沒有圖片。',ksr:'搜尋名稱，例如 蝴蝶刀',kth:['名次','飾品','現價','30 日漲幅','30 日成交','成交額','量比','掛單'],sph:'貼上 SkinPan 榜單（最多 100 件）',spn:'到 SkinPan 的<a href="https://skinpan.com/zh/market/rankings/losers" target="_blank" rel="noopener" style="color:var(--ac)">跌幅排名</a>，分類選匕首或手套、區間選 30 天，全選表格後貼到下面。系統只保留刀與手套，最多 100 件，會取代上方的表格。貼上的名稱會自動轉成繁體。本頁無法載入外部圖片，原有的 7 件可點名稱到 SkinPan 看圖。',spgo:'套用榜單',spe:'沒有讀到刀或手套的資料，請確認複製的是完整表格。',spo:n=>`已套用 ${n} 件。`,rl:'匯率 1 人民幣 ≈ 新台幣',rcn:'新台幣金額是依匯率換算的參考值，不是實際成交價。',rs:d=>`資料來源：SkinPan 大盤與跌幅榜，${d} 讀取。`,rk:['匕首指數','手套指數','大盤指數'],rsales:'日均成交',rth:['飾品','現價','30 日跌幅','30 日成交','成交額','量比','掛單'],rsg:{t:'樣本太薄',u:'分批觀察',d:'先觀望'},rsig:{t:(s,l)=>`30 日只成交 ${s} 件、掛單 ${l} 件，樣本太薄，價格容易被單筆交易扭曲，先不要當成買點。`,u:(c,v)=>`跌 ${c}%，成交量是均量的 ${v} 倍，賣壓可能正在釋放，可小額分批觀察。`,d:(c,v)=>`跌 ${c}%，但量比只有 ${v}，還沒有止跌訊號，先觀望。`},rnote:'SkinPan 刀類與手套的跌幅榜前 100 名都已收錄。它只提供 30 日累計的價量，沒有逐日資料，因此下面三段（每日成交量、單日跌幅、入手時機）仍是模擬資料。以上不構成投資建議。',h1:'成交概況',n1:'未匯入逐日資料時，顯示 SkinPan 榜單頁面頂部的 30 日累計成交（匕首、手套各一份，人民幣計價）。匯入逐日資料後，這裡會改成每日成交量圖表。',q:'成交件數',t:'成交額',h2:'30 日跌幅前十名（刀與手套，真實資料）',n2:'合併 SkinPan 刀類與手套跌幅榜各前 100 名，取跌幅最大的 10 件。量比 = 近 3 日平均成交量 ÷ 30 日平均成交量。',h3:'入手時機建議（前 100 名）',n3:'把 SkinPan 刀類與手套的六份榜單（跌幅、漲幅、銷量）合併去重，依「30 日漲跌、量比、成交量」排出最值得考慮的 100 件。規則：30 日成交少於 40 件或掛單不到 60 件→樣本太薄；跌 10% 以上且量比 ≥ 1→觀察機會；跌 10% 以上但量比 < 1→先觀望；漲 10% 以上→短線偏熱；其餘→持續觀察。大盤與匕首、手套指數為上次匯入的數字，尚未隨本次榜單更新。只有 30 日累計資料，沒有逐日價格，無法判斷週幾買最便宜。這是規則式統計，不保證未來走勢，也不是投資建議。',h4:'匯入你自己的資料',n4:'目前顯示的是模擬資料。網頁無法直接連到 Steam 市場，請從你的資料來源匯出後貼上，格式：<code>日期,物品名稱,價格,成交量</code>（每行一筆，日期如 2026-11-20，至少 10 件物品、10 天以上）。價格請填人民幣，顯示時可切換成新台幣。物品名稱可用英文、台灣或中國大陸用語。也可以直接貼上 Apify「Steam Community Market Scraper」匯出的 JSON 或 CSV（每筆需含 marketHashName、time、medianPrice、volume），系統會自動把逐小時資料合併成每日。',go:'套用資料',reset:'還原模擬資料',wk:'日一二三四五六',pre:'週',src:{user:'你匯入的資料'},meta:(s,a,b,n)=>`「每日成交量」區塊資料：${s}　涵蓋 ${a} 至 ${b}，共 ${n} 件物品`,k1:'今日成交件數',vs:'較昨日',k2:'今日成交額',k3:'30 日平均每日件數',max:'最高',unit:' 件',unit2:'（成交額）',wkend:'淡色為週末',th:['物品','現價','日跌幅','7 日','距均價','量比'],sg:{b:'分批買進',w:'先觀察',h:'不追高',n:'定期小額'},ry:(d,v)=>`價格低於 30 日均價 ${d}%，且近 3 日量能放大 ${v} 倍：賣壓可能正在釋放，可先買三分之一，觀察 2–3 天再加碼。`,rw:(d,v)=>`價格低於均價 ${d}%，但量能只有 ${v} 倍，屬縮量下跌，尚無止跌訊號，等量能回升再進場。`,rh:d=>`價格高於 30 日均價 ${d}%，短線已漲多，等回檔較安全。`,rn:d=>`價格在均價附近（${d}），沒有明顯折價，想持有可小額分批。`,best:(w,d)=>` 歷史上${w}平均價最低（比均價低 ${d}%），可優先挑這天下單。`,all:(w,d)=>`全市場平均來看，${w}的價格相對最低（比各自 30 日均價低 ${d}%）。樣本只有約 4 個週期，差距小時請當參考而非規律。`,err:'資料不足：至少需要 10 件物品、每件 10 天以上。'},
+cn:{lang:'zh-Hans',title:'CS 饰品市场日报',rt:'真实行情快照：刀跌幅榜（近 30 天）',cu:['人民币 ¥','新台币 NT$'],lt:'手套 30 日跌幅榜（前 100 名）',ln:'数据：SkinPan 手套分类跌幅排名，2026-11-21 复制，币种为人民币。第 1 名驾驶手套｜逐沧浪（破损不堪）跌了 33.7%，第 2 名起落在 −15.7% 到 −8.2% 之间。名称按原样显示，这里没有图片。',gt:'手套 30 日涨幅榜（前 100 名）',gn:'数据：SkinPan 手套分类 30 天涨幅排名，2026-11-21 复制，币种为人民币。前 100 名里只有 8 件上涨，最多涨 30.4%（第 1 名摩托手套｜第三特种兵连略有磨损，只成交 93 件、量比 0.32，样本偏薄），第 100 名已跌到 −5.76%。这里没有图片。',kt:'刀 30 日涨幅榜（匕首分类，前 100 名）',kn:'数据：SkinPan 匕首分类 30 天涨幅排名，2026-11-21 复制，币种为人民币。前 100 名里有 92 件上涨，最多涨 12.9%（第 1 名 StatTrak™ 求生匕首｜蓝钢战痕累累，30 日只成交 46 件，样本偏薄），第 100 名已是 −0.24%。这里只有名称，没有图片。',ksr:'搜索名称，例如 蝴蝶刀',kth:['名次','饰品','现价','30 日涨幅','30 日成交','成交额','量比','挂单'],sph:'粘贴 SkinPan 榜单（最多 100 件）',spn:'到 SkinPan 的<a href="https://skinpan.com/zh/market/rankings/losers" target="_blank" rel="noopener" style="color:var(--ac)">跌幅排名</a>，分类选匕首或手套、区间选 30 天，全选表格后粘贴到下面。系统只保留刀与手套，最多 100 件，会替换上方的表格。粘贴的名称按原样显示。本页无法加载外部图片，原有的 7 件可点名称到 SkinPan 看图。',spgo:'应用榜单',spe:'没有读到刀或手套的数据，请确认复制的是完整表格。',spo:n=>`已应用 ${n} 件。`,rl:'汇率 1 人民币 ≈ 新台币',rcn:'新台币金额是按汇率换算的参考值，不是实际成交价。',rs:d=>`数据来源：SkinPan 大盘与跌幅榜，${d} 读取。`,rk:['匕首指数','手套指数','大盘指数'],rsales:'日均成交',rth:['饰品','现价','30 日跌幅','30 日成交','成交额','量比','挂单'],rsg:{t:'样本太薄',u:'分批观察',d:'先观望'},rsig:{t:(s,l)=>`30 日只成交 ${s} 件、挂单 ${l} 件，样本太薄，价格容易被单笔交易扭曲，先不要当成买点。`,u:(c,v)=>`跌 ${c}%，成交量是均量的 ${v} 倍，抛压可能正在释放，可小额分批观察。`,d:(c,v)=>`跌 ${c}%，但量比只有 ${v}，还没有止跌信号，先观望。`},rnote:'SkinPan 刀类与手套的跌幅榜前 100 名都已收录。它只提供 30 日累计的价量，没有逐日数据，因此下面三段（每日成交量、单日跌幅、入手时机）仍是模拟数据。以上不构成投资建议。',h1:'每日成交量（模拟数据）',n1:'近 30 天全市场合计。红涨绿跌。',q:'成交数量',t:'成交额',h2:'单日跌幅前十名（模拟数据）',n2:'以最新一日收盘价对比前一日。量比 = 近 3 日平均成交量 ÷ 30 日平均成交量。',h3:'入手时机建议（前 100 名）',n3:'把 SkinPan 刀类与手套的六份榜单（跌幅、涨幅、销量）合并去重，按“30 日涨跌、量比、成交量”排出最值得考虑的 100 件。规则：30 日成交少于 40 件或挂单不到 60 件→样本太薄；跌 10% 以上且量比 ≥ 1→分批买入；跌 10% 以上但量比 < 1→先观望；涨 10% 以上→不追高；其余→定投小额。目前大盘与匕首、手套指数 30 日都跌约 6% 到 8%，整体偏弱，即使出现分批买入信号也建议分三批。只有 30 日累计数据，没有逐日价格，无法判断周几买最便宜。这是基于规则的统计，不保证未来走势，也不构成投资建议。',h4:'导入你自己的数据',n4:'当前显示的是模拟数据。网页无法直接连接 Steam 市场，请从你的数据来源导出后粘贴，格式：<code>日期,饰品名称,价格,成交量</code>（每行一条，日期如 2026-11-20，至少 10 件饰品、10 天以上）。价格请填人民币，显示时可切换成新台币。饰品名称可用英文、台湾或大陆叫法。也可以直接粘贴 Apify “Steam Community Market Scraper” 导出的 JSON 或 CSV（每条需含 marketHashName、time、medianPrice、volume），系统会自动把逐小时数据合并成每日。',go:'应用数据',reset:'还原模拟数据',wk:'日一二三四五六',pre:'周',src:{user:'你导入的数据'},meta:(s,a,b,n)=>`“每日成交量”区块数据：${s}　覆盖 ${a} 至 ${b}，共 ${n} 件饰品`,k1:'今日成交数量',vs:'较昨日',k2:'今日成交额',k3:'30 日日均成交数量',max:'最高',unit:' 件',unit2:'（成交额）',wkend:'浅色为周末',th:['饰品','现价','日跌幅','7 日','距均价','量比'],sg:{b:'分批买入',w:'先观望',h:'不追高',n:'定投小额'},ry:(d,v)=>`价格低于 30 日均价 ${d}%，且近 3 日成交量放大 ${v} 倍：抛压可能正在释放，可先买三分之一，观察 2–3 天再加仓。`,rw:(d,v)=>`价格低于均价 ${d}%，但成交量只有 ${v} 倍，属于缩量下跌，暂无止跌信号，等成交量回升再入场。`,rh:d=>`价格高于 30 日均价 ${d}%，短线涨幅较大，等回调更稳妥。`,rn:d=>`价格在均价附近（${d}），没有明显折价，想持有可小额分批买入。`,best:(w,d)=>` 历史上${w}平均价最低（比均价低 ${d}%），可优先挑这天下单。`,all:(w,d)=>`全市场平均来看，${w}的价格相对最低（比各自 30 日均价低 ${d}%）。样本只有约 4 个周期，差距小时请仅作参考，不要当作规律。`,err:'数据不足：至少需要 10 件饰品、每件 10 天以上。'}};
 // [英文, 台灣用法, 中國用語, 基準價, 波動, 基準量]
-const ITEMS=[['Karambit | Doppler (FN)','爪子刀 | 都卜勒（全新出廠）','爪子刀 | 多普勒（崭新出厂）',900,.03,30],['Butterfly Knife | Fade (FN)','蝴蝶刀 | 漸變之色（全新出廠）','蝴蝶刀 | 渐变之色（崭新出厂）',1700,.025,14],['Sport Gloves | Vice (FT)','運動手套 | 邁阿密風雲（久經沙場）','运动手套 | 迈阿密风云（久经沙场）',1300,.03,10],['M9 Bayonet | Marble Fade (FN)','M9 刺刀 | 漸變大理石（全新出廠）','M9 刺刀 | 渐变大理石（崭新出厂）',1400,.03,16],['Bayonet | Tiger Tooth (FN)','刺刀 | 虎牙（全新出廠）','刺刀 | 虎牙（崭新出厂）',600,.035,28],['Flip Knife | Doppler (FN)','折疊刀 | 都卜勒（全新出廠）','折叠刀 | 多普勒（崭新出厂）',330,.04,45],['Gut Knife | Fade (FN)','穿腸刀 | 漸變之色（全新出廠）','穿肠刀 | 渐变之色（崭新出厂）',190,.04,60],['Huntsman Knife | Case Hardened (FT)','獵殺者匕首 | 表面淬火（久經沙場）','猎杀者匕首 | 表面淬火（久经沙场）',350,.04,35],['Bowie Knife | Crimson Web (FT)','鮑伊獵刀 | 深紅之網（久經沙場）','鲍伊猎刀 | 深红之网（久经沙场）',280,.04,32],['Specialist Gloves | Crimson Kimono (FT)','專業手套 | 深紅和服（久經沙場）','专业手套 | 深红和服（久经沙场）',1500,.03,8],['Hand Wraps | Cobalt Skulls (FT)','裹手 | 鈷藍骷髏（久經沙場）','裹手 | 钴蓝骷髅（久经沙场）',420,.04,22]];
-const ALIAS={},NM={};ITEMS.forEach(i=>{NM[i[0]]=i;i.slice(0,3).forEach(n=>ALIAS[n]=i[0])});
-const WEAR={FT:'Field-Tested',FN:'Factory New',MW:'Minimal Wear',BS:'Battle-Scarred',WW:'Well-Worn'};ITEMS.forEach(i=>{const m=i[0].match(/\((FT|FN|MW|BS|WW)\)$/);if(m)ALIAS[i[0].replace(m[0],'('+WEAR[m[1]]+')')]=i[0]});
+
+const ALIAS={},NM={};
+const WEAR={FT:'Field-Tested',FN:'Factory New',MW:'Minimal Wear',BS:'Battle-Scarred',WW:'Well-Worn'};function initNames(list){list.forEach(i=>{NM[i[0]]=i;i.slice(0,3).forEach(n=>ALIAS[n]=i[0])});list.forEach(i=>{const m=i[0].match(/\((FT|FN|MW|BS|WW)\)$/);if(m)ALIAS[i[0].replace(m[0],'('+WEAR[m[1]]+')')]=i[0]});Object.keys(ALIAS).forEach(k=>ALIAS[norm(k)]=ALIAS[k])}
 const norm=n=>String(n).replace(/\(/g,'（').replace(/\)/g,'）').replace(/（★）|★/g,'').replace(/\s+（/g,'（').replace(/\s+/g,' ').trim();
-Object.keys(ALIAS).forEach(k=>ALIAS[norm(k)]=ALIAS[k]);
+
 const KG=/Knife|Karambit|Bayonet|Dagger|Gloves|Wraps|Kukri|刀|匕首|手套|裹手|刺刃/i;
 let cur='cny',rate=4.75;try{cur=localStorage.getItem('cur')||'cny';rate=+localStorage.getItem('rate')||4.75}catch(e){}
 const M=x=>cur=='twd'?x*rate:x,sym=()=>cur=='twd'?'NT$':'¥';
 let lang='tw';
 const L=()=>T[lang],dn=n=>NM[n]?NM[n][lang=='tw'?1:2]:n;
-function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function gen(){const r=rng(2026),end=Date.UTC(2026,10,20),o=[];
-ITEMS.forEach((it,i)=>{let p=it[3];for(let d=0;d<30;d++){const dt=new Date(end-(29-d)*864e5),wd=dt.getUTCDay(),we=wd==0||wd==6;let vm=1;
-p*=1+(r()-.5)*it[4]+(it[3]/p-1)*.06+(we?-.004:0);
-if(d==29&&i%3==0){p*=1-(.05+r()*.08);vm=1.8}
-if(d>=27&&i%4==1){p*=.97;vm=.7}
-o.push([dt.toISOString().slice(0,10),it[0],+p.toFixed(2),Math.round(it[5]*(.8+.4*r())*(we?1.25:1)*vm)])}});return o}
-let mode='q',state=null,srcK='sim';
+
+
+
+
+
+
+
+let mode='q',state=null,srcK='snap';
 function analyze(rows){
  const by={},tot={};
  rows.forEach(([d,n,p,v])=>{(by[n]=by[n]||[]).push({d,p,v});const t=tot[d]=tot[d]||{q:0,t:0};t.q+=v;t.t+=p*v});
@@ -115,43 +142,39 @@ function chart(){
  $('#chart').innerHTML=s+`<text x="${pl}" y="12">${L().max} ${fmt(k=='t'?M(mx):mx)}${k=='t'?L().unit2:L().unit}　${L().wkend}</text>`;
 }
 const SC={b:'--up',w:'--wn',h:'--dn',n:'--mu'};
-function render(){
- const l=L(),{dates,tot,stats}=state,W=d=>l.pre+l.wk[d];
+function render(){if(!META)return;
+ const l=L(),{dates,tot,stats}=state||{},W=d=>l.pre+l.wk[d];
  document.documentElement.lang=l.lang;$('#ccny').textContent=l.cu[0];$('#ctwd').textContent=l.cu[1];$('#ccny').setAttribute('aria-pressed',cur=='cny');$('#ctwd').setAttribute('aria-pressed',cur=='twd');$('#rl').textContent=l.rl;$('#rate').value=rate;$('#rlab').hidden=cur!='twd';document.title=l.title;
  document.querySelectorAll('[data-k]').forEach(e=>e.innerHTML=l[e.dataset.k]);
  $('#bq').textContent=l.q;$('#bt').textContent=l.t;$('#go').textContent=l.go;$('#reset').textContent=l.reset;
  $('#csv').placeholder='2026-11-19,'+dn('AK-47 | Redline (FT)')+',28.5,420';
  $('#ltw').setAttribute('aria-pressed',lang=='tw');$('#lcn').setAttribute('aria-pressed',lang=='cn');
- $('#meta').textContent=l.meta(l.src[srcK],dates[0],dates[dates.length-1],stats.length);
- const a=tot[dates[dates.length-1]],b=tot[dates[dates.length-2]],avgq=dates.reduce((s,d)=>s+tot[d].q,0)/dates.length;
- $('#kpi').innerHTML=`<div><b>${fmt(a.q)}</b><span>${l.k1}（${l.vs} <i class="${cls(a.q/b.q-1)}" style="font-style:normal">${pc(a.q/b.q-1)}</i>）</span></div><div><b>${fmt(M(a.t))}</b><span>${l.k2}（${sym()}）</span></div><div><b>${fmt(avgq)}</b><span>${l.k3}</span></div>`;
- chart();renderReal();renderKnives();renderGloves();renderGL();renderSL();renderUL();
- const dr=[...stats].sort((x,y)=>x.c1-y.c1).slice(0,10);
- $('#drop').innerHTML='<tr>'+l.th.map((h,j)=>`<th>${j==1?h+' '+sym():h}</th>`).join('')+'</tr>'+dr.map((s,i)=>`<tr><td>${i+1}. ${esc(dn(s.n))}</td><td>${M(s.p).toFixed(2)}</td><td class="${cls(s.c1)}">${pc(s.c1)}</td><td class="${cls(s.c7)}">${pc(s.c7)}</td><td class="${cls(s.disc)}">${pc(s.disc)}</td><td>${s.volR.toFixed(2)}</td></tr>`).join('');
- $('#recs').innerHTML=[...stats].sort((x,y)=>y.score-x.score).slice(0,6).map(s=>{const d=Math.abs(s.disc*100).toFixed(1),v=s.volR.toFixed(2);
-  const why={b:()=>l.ry(d,v),w:()=>l.rw(d,v),h:()=>l.rh(d),n:()=>l.rn(pc(s.disc))}[s.k]();
-  return `<div class="rec"><h3>${esc(dn(s.n))}<span class="tag" style="color:var(${SC[s.k]})">${l.sg[s.k]}</span></h3><p>${why}${s.best>=0?l.best(W(s.best),(-s.bd*100).toFixed(1)):''}</p></div>`}).join('');
- const ag=Array.from({length:7},(_,i)=>{const x=stats.map(s=>s.wm[i]).filter(v=>v!==null);return x.length?x.reduce((s,y)=>s+y,0)/x.length:null});
- let bi=-1;ag.forEach((x,i)=>{if(x!==null&&(bi<0||x<ag[bi]))bi=i});
- $('#wd').textContent=bi>=0?l.all(W(bi),(-ag[bi]*100).toFixed(2)):'';renderDrop();renderVol();
+ if(state)$('#meta').textContent=l.meta(l.src[srcK],dates[0],dates[dates.length-1],stats.length);
+  $('#stamp').innerHTML=lang=='tw'?`<b>資料更新時間：</b>${UPD}　<b>資料來源：</b>SkinPan 榜單，手動整理，人民幣計價<br><span style="color:var(--mu);font-size:13px">行情僅供參考，非即時交易價格，不構成投資建議。表頭可點擊排序。</span>`:`<b>数据更新时间：</b>${UPD}　<b>数据来源：</b>SkinPan 榜单，手动整理，人民币计价<br><span style="color:var(--mu);font-size:13px">行情仅供参考，非实时交易价格，不构成投资建议。表头可点击排序。</span>`;
+ if(state){const a=tot[dates[dates.length-1]],b=tot[dates[dates.length-2]],avgq=dates.reduce((s,d)=>s+tot[d].q,0)/dates.length;
+ $('#kpi').innerHTML=`<div><b>${fmt(a.q)}</b><span>${l.k1}（${l.vs} <i class="${cls(a.q/b.q-1)}" style="font-style:normal">${pc(a.q/b.q-1)}</i>）</span></div><div><b>${fmt(M(a.t))}</b><span>${l.k2}（${sym()}）</span></div><div><b>${fmt(avgq)}</b><span>${l.k3}</span></div>`;}
+ if(state)chart();renderReal();renderKnives();renderGloves();renderGL();renderSL();renderUL();
+ if(state){const dr=[...stats].sort((x,y)=>x.c1-y.c1).slice(0,10);
+ $('#drop').innerHTML='<tr>'+l.th.map((h,j)=>`<th>${j==1?h+' '+sym():h}</th>`).join('')+'</tr>'+dr.map((s,i)=>`<tr><td>${i+1}. ${fn(dn(s.n))}</td><td>${M(s.p).toFixed(2)}</td><td class="${cls(s.c1)}">${pc(s.c1)}</td><td class="${cls(s.c7)}">${pc(s.c7)}</td><td class="${cls(s.disc)}">${pc(s.disc)}</td><td>${s.volR.toFixed(2)}</td></tr>`).join('');}
+ renderBuy();renderDrop();renderVol();if(typeof HistoryChart!='undefined')HistoryChart.refresh();
 }
 
-const REAL={d:'2026-11-20',cat:[[922.81,-.0611,305000],[899.59,-.0779,129000],[923.23,-.0606,0]],rows:[
-['流浪者匕首 | 大馬士革鋼（StatTrak™ 破損不堪）','流浪者匕首 | 大马士革钢（StatTrak™ 破损不堪）',880,-.5449,31,30300,1.11,4,'nomad-knife-damascus-steel/stattrak-well-worn'],
-['暗影雙匕 | 致命紫羅蘭（StatTrak™ 戰痕累累）','暗影双匕 | 致命紫罗兰（StatTrak™ 战痕累累）',421.86,-.5198,35,15800,1.10,49,'shadow-daggers-ultraviolet/stattrak-battle-scarred'],
-['系繩匕首 | 大馬士革鋼（破損不堪）','系绳匕首 | 大马士革钢（破损不堪）',330,-.4090,51,19100,.59,153,'paracord-knife-damascus-steel/well-worn'],
-['駕駛手套 | 逐滄浪（破損不堪）','驾驶手套 | 逐沧浪（破损不堪）',900,-.3446,72,70700,.95,304,'driver-gloves-wave-chaser/well-worn'],
-['暗影雙匕 | 森林 DDPAT（破損不堪）','暗影双匕 | 森林 DDPAT（破损不堪）',296.07,-.2402,90,27100,.67,241,'shadow-daggers-forest-ddpat/well-worn'],
-['暗影雙匕 | 屠夫（StatTrak™ 略有磨損）','暗影双匕 | 屠夫（StatTrak™ 略有磨损）',753,-.2323,60,47800,.79,43,'shadow-daggers-slaughter/stattrak-minimal-wear'],
-['流浪者匕首 | 都市偽裝（破損不堪）','流浪者匕首 | 都市伪装（破损不堪）',525,-.2189,80,49900,.96,276,'nomad-knife-urban-masked/well-worn']]};
+const REAL={d:'',cat:[],rows:[]};
+
+
+
+
+
+
+
 function renderReal(){const l=L(),i=lang=='tw'?0:1;
  $('#rsrc').textContent=l.rs(REAL.d)+(cur=='twd'?' '+l.rcn:'');
  $('#rkpi').innerHTML=REAL.cat.map((c,j)=>`<div><b>${c[0].toFixed(2)}</b><span>${l.rk[j]}（<i class="${cls(c[1])}" style="font-style:normal">${pc(c[1])}</i>${c[2]?'，'+l.rsales+' '+fmt(c[2]/30)+' 件':''}）</span></div>`).join('');
  const T2=r=>r[4]<40||r[7]<=60?'t':r[6]>=1?'u':'d';
- $('#rtab').innerHTML='<tr>'+l.rth.map((h,j)=>`<th>${j==1||j==4?h+' '+sym():h}</th>`).join('')+'</tr>'+REAL.rows.map(r=>`<tr><td>${r[8]?`<a href="https://skinpan.com/zh/items/${r[8]}" target="_blank" rel="noopener" style="color:var(--ac)">${esc(r[i])}</a>`:esc(r[i])}</td><td>${M(r[2]).toFixed(2)}</td><td class="${cls(r[3])}">${pc(r[3])}</td><td>${fmt(r[4])}</td><td>${fmt(M(r[5]))}</td><td>${r[6].toFixed(2)}</td><td>${fmt(r[7])}</td></tr>`).join('');
+ $('#rtab').innerHTML='<tr>'+l.rth.map((h,j)=>hd('rtab',j==1||j==4?h+' '+sym():h,j,j==0?'text-align:left':'')).join('')+'</tr>'+srt('rtab',REAL.rows,[r=>r[i],r=>r[2],r=>r[3],r=>r[4],r=>r[5],r=>r[6],r=>r[7]]).map(r=>`<tr><td>${r[8]?`<a href="https://skinpan.com/zh/items/${r[8]}" target="_blank" rel="noopener" style="color:var(--ac)">${fn(r[i],1)}</a>`:fn(r[i])}</td><td>${M(r[2]).toFixed(2)}</td><td class="${cls(r[3])}">${pc(r[3])}</td><td>${fmt(r[4])}</td><td>${fmt(M(r[5]))}</td><td>${r[6].toFixed(2)}</td><td>${fmt(r[7])}</td></tr>`).join('');
  $('#rrec').innerHTML=REAL.rows.slice(0,10).map(r=>{const t=T2(r),c=Math.abs(r[3]*100).toFixed(1),v=r[6].toFixed(2);
   const why=t=='t'?l.rsig.t(r[4],r[7]):l.rsig[t](c,v);
-  return `<div class="rec"><h3>${esc(r[i])}<span class="tag" style="color:var(${t=='u'?'--up':t=='t'?'--mu':'--wn'})">${l.rsg[t]}</span></h3><p>${why}</p></div>`}).join('')}
+  return `<div class="rec"><h3>${fn(r[i])}<span class="tag" style="color:var(${t=='u'?'--up':t=='t'?'--mu':'--wn'})">${l.rsg[t]}</span></h3><p>${why}</p></div>`}).join('')}
 
 function spParse(t){t=t.replace(/[\u2060\u200b]/g,'').replace(/\u2212/g,'-');const re=/([^¥]+?)¥([\d,.]+)\s*([+-]?[\d.]+)%\s*([\d,]+)\s*¥([\d.,]+)(万|亿)?\s*([\d.]+)×\s*([\d,]+)\s*[\d,.]+天\s*¥[\d.,]+(?:万|亿)?/g;const u=x=>x=='万'?1e4:x=='亿'?1e8:1,num=x=>+x.replace(/,/g,''),rows=[];let m;
  while((m=re.exec(t))){const n=m[1].replace(/^[\s\d]+/,'').replace(/\s+/g,' ').trim();if(!/匕首|手套|刀|裹手/.test(n))continue;
@@ -162,48 +185,31 @@ $('#spgo').onclick=()=>{const r=spParse($('#sp').value);if(!r.length){$('#spm').
 const KT=[['系绳匕首','系繩匕首'],['求生匕首','求生匕首'],['熊刀','熊刀'],['弯刀','彎刀'],['暗影双匕','暗影雙匕'],['鲍伊猎刀','鮑伊獵刀'],['廓尔喀刀','廓爾喀刀'],['折刀','折刀'],['穿肠刀','穿腸刀'],['刺刀','刺刀'],['猎杀者匕首','獵殺者匕首'],['锯齿爪刀','鋸齒爪刀'],['蝴蝶刀','蝴蝶刀'],['骷髅匕首','骷髏匕首'],['流浪者匕首','流浪者匕首'],['短剑','短劍'],['海豹短刀','海豹短刀'],['折叠刀','折疊刀']];
 const KF=[['',''],['北方森林','北方森林'],['蓝钢','藍鋼'],['致命紫罗兰','致命紫羅蘭'],['深红之网','深紅之網'],['狩猎网格','狩獵網格'],['传说','傳說'],['森林 DDPAT','森林 DDPAT'],['噩梦之夜','噩夢之夜'],['自由之手','自由之手'],['枯焦之色','枯焦之色'],['屠夫','屠夫'],['人工染色','人工染色'],['外表生锈','外表生鏽'],['都市伪装','都市偽裝'],['黑色层压板','黑色層壓板'],['夜色','夜色'],['大马士革钢','大馬士革鋼'],['表面淬火','表面淬火'],['虎牙','虎牙'],['澄澈之水','澄澈之水'],['自动化','自動化']];
 const KW=[['崭新出厂','全新出廠'],['略有磨损','略有磨損'],['久经沙场','久經沙場'],['破损不堪','破損不堪'],['战痕累累','戰痕累累']];
-const KD='0,1,14,318,19.46,38,1.45,1.24,38;1,2,14,554.53,12.54,51,3.05,.84,50;2,3,14,568.87,10.38,84,5.32,1.17,46;3,4,12,955.4,9.66,52,5.85,1.07,207;4,5,12,326.27,9.2,41,1.52,.52,162;5,6,13,532.4,8.34,89,5.22,.72,126;6,5,12,251.8,8.15,268,7.7,.83,610;5,7,4,371.87,8.05,79,3.57,.92,243;5,7,2,365,7.34,534,24.4,1.04,565;7,5,1,245.93,7.25,76,2.13,.9,252;8,8,12,367.93,6.16,69,2.74,.99,60;9,9,12,1054.4,5.9,40,4.93,1.61,371;9,5,4,694.67,5.16,77,6.19,1.28,283;9,8,1,1054.93,5.07,32,3.68,.54,423;8,10,12,406.33,4.97,46,2.23,.75,132;5,11,2,923.27,4.66,89,9.37,1.11,215;5,4,12,889.13,4.48,34,3.31,1.13,74;9,3,14,908.6,4.29,45,5.03,.67,106;10,10,12,479.53,4.24,31,1.57,1.24,128;0,10,14,353.13,4.17,42,1.64,.82,90;4,12,12,493.27,3.83,30,1.62,.43,95;4,1,2,237.53,3.75,268,7.58,.74,946;3,13,3,372.6,3.35,35,1.47,.86,342;12,11,11,6828,3.3,37,32,.7,205;13,14,3,788,3.11,42,3.62,1.43,293;0,10,12,334.8,3.05,62,2.44,1.04,291;6,7,13,298.5,2.89,48,1.58,.54,177;5,15,13,349.13,2.87,68,2.75,1.07,239;6,16,13,346.53,2.7,63,2.39,.88,139;10,6,14,616,2.63,92,5.72,.89,121;4,4,4,353.07,2.54,107,4.53,1,397;4,4,2,359.87,2.51,305,13.1,.66,1045;1,1,14,292.27,2.46,30,.984,1,69;7,16,4,243.4,2.44,121,3.47,1.06,335;1,10,2,255,2.28,847,26.6,.87,1039;8,1,1,303.87,2.27,42,1.43,.71,297;9,3,3,790.47,2.19,61,5.55,1.12,319;0,11,11,885.87,2.07,51,5.63,.84,139;11,13,14,1445.87,2.06,66,10.7,.84,596;12,6,14,3110.2,1.98,41,14.6,.42,326;13,17,3,1086.6,1.91,49,6.02,1.4,394;7,1,3,224.87,1.72,71,1.88,.72,298;10,0,99,621.4,1.7,110,8.07,1.05,489;3,14,4,373.6,1.61,124,5.25,.73,397;4,9,11,372.53,1.55,41,1.75,1.25,247;13,7,14,753.27,1.52,30,2.37,1.14,149;11,17,1,1716.6,1.5,118,25.5,.55,700;0,12,4,305.73,1.42,400,14.4,1.05,1223;4,10,4,261.13,1.37,55,1.58,.23,178;1,17,3,330.6,1.37,52,2.09,.5,299;2,17,3,448.53,1.32,38,2.2,.34,381;8,1,4,275.87,1.32,64,2,.74,307;1,18,14,592.93,1.27,48,3.61,.8,81;7,19,1,483.93,1.25,34,1.74,1.77,108;8,15,12,389.67,1.23,37,1.56,.7,178;3,20,3,410,1.19,112,4.92,1.45,156;10,2,3,623.2,1.06,103,7.3,.67,376;16,18,4,666.33,1.02,73,5.94,.76,565;1,12,12,428.4,1,48,2.52,.36,233;10,4,4,594.67,1,120,8.91,.89,269;8,15,14,406,.97,43,1.92,.9,119;13,16,12,915.67,.93,48,4.77,.54,301;10,13,14,366.4,.86,69,2.94,.93,417;11,4,4,1770.93,.83,92,18.4,.79,516;5,20,4,347.53,.71,49,1.88,.88,423;5,5,4,298,.69,32,1.12,.54,303;16,5,3,338.4,.67,38,1.32,.68,227;14,17,12,814.07,.62,123,9.69,.77,482;9,11,11,2179.27,.6,30,6.94,.86,198;4,14,2,244.93,.56,362,10.6,.77,1159;3,4,2,621.07,.54,282,20.9,.85,636;9,19,10,1664.33,.5,43,8.01,.6,304;9,5,12,724.33,.46,44,3.67,1.36,199;0,3,1,504,.42,96,5.84,.89,372;9,2,4,1100.13,.41,95,11.8,.9,416;14,1,3,436.8,.37,91,4.65,.71,317;15,16,3,864.73,.36,31,3.01,.42,295;7,16,3,240.13,.31,57,1.64,.9,324;10,7,2,297.87,.29,213,7.27,1.33,911;5,2,2,503.27,.27,47,2.87,.91,305;1,2,13,511.73,.27,43,2.55,1.2,38;3,13,14,392.73,.23,111,5.27,.77,418;3,18,3,783.13,.22,73,6.58,1.12,472;4,3,3,263,.2,68,2.28,.57,313;8,15,13,384,.16,42,1.85,1.22,123;1,16,12,358.6,.15,74,3.01,1.1,477;7,7,12,290.53,.14,38,1.36,1.02,238;3,11,2,1056.4,.05,113,14.1,.95,558;8,5,1,297.27,.05,36,1.27,.36,379;7,7,4,228.67,.01,126,3.35,.68,434;9,3,13,942.47,-.07,45,4.95,.95,41;0,17,12,378.27,-.1,153,6.4,.98,379;7,4,12,478.07,-.12,56,3.31,1.07,206;4,3,4,258.4,-.18,217,6.58,1.15,450;10,15,4,315.4,-.2,516,19.8,.84,1114;17,21,12,1073.33,-.21,36,4.47,1.67,334;13,18,1,1703.4,-.21,74,14.5,1.04,1239;5,7,12,400.4,-.22,43,2,1,130;15,17,12,1078.8,-.25,66,8.48,.84,287;1,11,11,803.99,-.25,92,8.25,1.17,218'.split(';').map(x=>x.split(',').map(Number));
-const RD='流浪者匕首,大马士革钢,13,880,-54.49,31,3.03,1.11,4;暗影双匕,致命紫罗兰,14,421.86,-51.98,35,1.58,1.10,49;系绳匕首,大马士革钢,3,330,-40.90,51,1.91,.59,153;暗影双匕,森林 DDPAT,3,296.07,-24.02,90,2.71,.67,241;暗影双匕,屠夫,11,745,-23.23,60,4.78,.79,43;流浪者匕首,都市伪装,3,525,-21.89,80,4.99,.96,276;熊刀,夜色,14,568.53,-21.62,33,1.99,.91,68;流浪者匕首,深红之网,3,840,-20.58,53,5.35,.57,352;折刀,深红之网,3,374.67,-20.05,57,2.67,.30,252;折叠刀,都市伪装,2,559,-19.92,118,8.46,1.24,505;系绳匕首,夜色,14,397,-19.35,55,2.26,1.17,46;求生匕首,致命紫罗兰,3,351.67,-18.83,148,6.18,.67,377;流浪者匕首,森林 DDPAT,14,461.4,-18.17,43,2.32,1.10,145;折叠刀,人工染色,2,615.5,-17.98,54,4.09,.95,535;折叠刀,枯焦之色,2,540,-17.48,141,9.64,1.64,505;系绳匕首,森林 DDPAT,2,239.2,-17.38,823,23.7,.85,1070;M9 刺刀,自动化,4,2798,-17.35,53,18,.89,586;刺刀,澄澈之水,3,833.33,-17.30,39,3.56,.99,141;系绳匕首,致命紫罗兰,3,365.16,-17.14,198,8.6,1.04,374;求生匕首,森林 DDPAT,4,245,-16.91,249,7.32,.78,537;流浪者匕首,人工染色,14,783,-16.72,56,4.68,.92,83;鲍伊猎刀,传说,12,522.67,-16.36,53,3.04,.49,243;流浪者匕首,夜色,3,502.93,-16.19,69,4.15,.93,352;猎杀者匕首,人工染色,2,468.13,-16.18,40,2.18,.86,330;折叠刀,北方森林,2,548.6,-16.12,196,12.5,2.19,588;穿肠刀,自动化,3,506.67,-16.01,31,1.79,.69,174;猎杀者匕首,狩猎网格,12,436.41,-15.76,45,2.07,.86,55;猎杀者匕首,自由之手,4,426.07,-15.74,31,1.43,.55,214;折叠刀,外表生锈,4,555,-15.72,282,19.8,1.16,1195;锯齿爪刀,北方森林,4,1111.53,-15.53,51,6.53,1.26,356;求生匕首,蓝钢,4,350,-15.46,144,6.04,.92,720;骷髅匕首,深红之网,4,1324.4,-15.31,92,14.1,.79,558;廓尔喀刀,表面淬火,1,573.27,-15.24,192,14,.89,1943;猎杀者匕首,自动化,14,775,-14.81,63,5.79,1.29,49;流浪者匕首,屠夫,11,1292.73,-14.63,38,5.57,.56,426;廓尔喀刀,狩猎网格,14,304.13,-14.55,43,1.46,1.30,238;猎杀者匕首,澄澈之水,4,320.8,-14.45,64,2.17,.67,376;廓尔喀刀,深红之网,12,502.33,-14.24,77,4.12,.89,622;求生匕首,森林 DDPAT,3,259.87,-14.22,120,3.51,.54,327;流浪者匕首,枯焦之色,4,426.73,-14.17,237,13,.60,573;刺刀,大马士革钢,0,1072.13,-13.95,57,7.87,.53,784;折叠刀,狩猎网格,2,539.5,-13.93,93,5.96,2.12,491;折叠刀,传说,4,861.93,-13.89,153,15.7,.67,558;骷髅匕首,屠夫,1,1848,-13.66,181,40.9,1.04,1390;系绳匕首,北方森林,2,245,-13.64,719,21.4,.79,1269;暗影双匕,深红之网,3,380.4,-13.52,44,1.88,.78,172;暗影双匕,黑色层压板,14,257.41,-13.51,99,2.82,.87,303;弯刀,伽玛多普勒 · P1,0,1159.27,-13.47,33,4.2,1.04,436;蝴蝶刀,自动化,3,3700,-13.44,38,15.5,.68,552;穿肠刀,都市伪装,2,274.47,-13.39,303,10.3,.62,792;求生匕首,深红之网,2,475.5,-13.31,341,20.1,.84,839;流浪者匕首,枯焦之色,3,446,-13.30,79,4.44,.87,308;鲍伊猎刀,北方森林,2,289.5,-13.24,210,7.15,1.18,634;鲍伊猎刀,传说,1,540,-13.20,244,17.8,.62,999;短剑,虎牙,10,1594.07,-13.17,53,8.84,1.21,451;求生匕首,夜色,14,365.99,-13.13,48,1.9,1.34,85;折叠刀,森林 DDPAT,2,554.5,-13.03,147,9.58,1.81,514;弯刀,自由之手,4,428.6,-13.02,66,3.09,.71,264;猎杀者匕首,致命紫罗兰,14,468.84,-12.97,37,1.87,.70,95;海豹短刀,森林 DDPAT,2,332.5,-12.97,309,12.6,.76,835;弯刀,狩猎网格,12,359.6,-12.96,36,1.5,.95,288;锯齿爪刀,致命紫罗兰,4,1344.93,-12.94,145,22.3,.92,705;熊刀,渐变大理石,10,1042.07,-12.92,109,13.3,.79,473;折叠刀,狩猎网格,4,558,-12.88,51,3.24,1.43,318;廓尔喀刀,狩猎网格,13,267.33,-12.86,43,1.23,.60,173;穿肠刀,传说,12,559.47,-12.85,93,6.26,1.11,338;弯刀,自动化,14,576.67,-12.79,140,9.76,.95,358;弯刀,狩猎网格,2,300.38,-12.76,302,11.6,.84,663;折刀,大马士革钢,4,275.38,-12.72,30,.765,.71,137;廓尔喀刀,夜色,12,308.53,-12.69,147,5.18,1.02,631;短剑,深红之网,4,1169.91,-12.67,132,18.5,1.20,369;求生匕首,致命紫罗兰,4,337.13,-12.62,457,18.3,1.02,854;求生匕首,人工染色,1,331.91,-12.57,129,5.45,.76,576;爪子刀,多普勒 · P1,0,6164.67,-12.48,31,23.3,.97,667;熊刀,致命紫罗兰,2,420,-12.47,332,18.8,.89,1132;系绳匕首,狩猎网格,1,240,-12.46,112,3.44,.92,552;穿肠刀,传说,3,458.53,-12.39,31,1.95,.69,147;折叠刀,澄澈之水,2,613.5,-12.31,283,21.6,1.02,1140;暗影双匕,传说,3,274.33,-12.29,639,22,.97,674;求生匕首,夜色,4,272.87,-12.25,259,8.57,.88,471;弯刀,自由之手,11,532.6,-12.18,60,4.25,.64,287;求生匕首,狩猎网格,4,235.4,-12.14,165,4.73,.96,539;海豹短刀,蓝钢,2,607.07,-12.13,112,8.66,.77,567;蝴蝶刀,传说,4,2651.27,-12.12,237,77.1,1.05,1063;M9 刺刀,虎牙,0,3081.4,-12.11,230,78.4,.97,1867;折叠刀,黑色层压板,3,634.5,-12.09,96,7.09,1.16,646;折刀,狩猎网格,4,225.33,-12.05,98,2.61,.66,239;求生匕首,表面淬火,2,476.67,-12.03,243,14,1.08,1288;求生匕首,表面淬火,4,477.4,-11.97,349,19.5,1.03,793;廓尔喀刀,蓝钢,12,468.93,-11.96,38,2.16,.79,403;M9 刺刀,人工染色,3,1881.6,-11.95,32,6.94,.80,465;爪子刀,外表生锈,4,2297,-11.93,85,23.7,1.06,1948;弯刀,澄澈之水,4,360.67,-11.92,50,2.24,1.20,286;暗影双匕,传说,12,391,-11.90,82,3.7,.58,328;爪子刀,渐变大理石,0,5000,-11.82,227,134,.87,3092;穿肠刀,虎牙,0,518.2,-11.77,697,44.2,.94,1184;廓尔喀刀,枯焦之色,3,246,-11.76,195,5.96,.73,584;蝴蝶刀,黑色层压板,2,3085.53,-11.76,158,55,1.11,2471;折叠刀,黑色层压板,2,637,-11.75,134,10.7,.96,712;刺刀,噩梦之夜,3,774.6,-11.75,39,3.35,.99,313'.split(';');
 const CS='马馬钢鋼罗羅兰蘭调調伪偽装裝红紅网網叠疊动動猎獵传傳说說锈鏽蓝藍锯鋸齿齒髅髕尔爾肠腸鲍鬮杀殺剑劍弯彎玛瑪渐漸变變层層压壓运運驾駕驶駛专專业業头頭种種连連细細纹紋龙龍沧滄柠檬园園铜銅护護卫衛鹤鶴绿綠澜瀟迈邁风風云雲针針袭襲导導体體书書织織凉涼带帶胶膠锦錦钴鈈终終线線树樹响響颈頸长長绣繡隐隱勋勳炽熾弹彈欧歐态態烟煙雾霧边邊点點栖棲陆陸军軍绯緋赞贊错錯乱亂黄黃',CM={};for(let k=0;k<CS.length;k+=2)CM[CS[k]]=CS[k+1];
-const TT=[['多普勒','都卜勒'],['雙棲','兩棲']];
+Object.assign(CM,{'鲍':'鮑','髅':'髏','钴':'鈷','柠':'檸','澜':'瀾','双':'雙','恶':'惡','绳':'繩','战':'戰','损':'損','经':'經','场':'場','崭':'嶄','厂':'廠'});
+const TT=[['多普勒','都卜勒'],['雙棲','兩棲'],['嶄新出廠','全新出廠']];
 const tw=s=>{s=String(s).replace(/./gu,c=>CM[c]||c);TT.forEach(([a,b])=>s=s.split(a).join(b));return s};
-const RSL={0:'nomad-knife-damascus-steel/stattrak-well-worn',1:'shadow-daggers-ultraviolet/stattrak-battle-scarred',2:'paracord-knife-damascus-steel/well-worn',3:'shadow-daggers-forest-ddpat/well-worn',4:'shadow-daggers-slaughter/stattrak-minimal-wear',5:'nomad-knife-urban-masked/well-worn'};
-REAL.d='2026-11-19';REAL.rows=RD.map((x,n)=>{const[t,f,w,p,ch,s,a,v,l]=x.split(','),nm=i=>{const T=KT.find(y=>y[0]==t),F=KF.find(y=>y[0]==f);return tw((T?T[i]:t)+' | '+(F?F[i]:f)+'（'+(+w>=10?'StatTrak™ ':'')+KW[+w%10][i]+'）')};return[nm(1),nm(0),+p,+ch/100,+s,+a*1e4,+v,+l,RSL[n]||null]});
-const kname=(r,i)=>{const w=r[2],f=KF[r[1]][i];return KT[r[0]][i]+(f?' | '+f:'')+(w==99?'':'（'+(w>=10?'StatTrak™ ':'')+KW[w%10][i]+'）')};
-function renderKnives(){const l=L(),i=lang=='tw'?1:0,q=$('#kq').value.trim().toLowerCase(),L2=' style="text-align:left"';
- $('#kq').placeholder=l.ksr;
- $('#ktab').innerHTML='<tr>'+l.kth.map((h,j)=>`<th${j==1?L2:''}>${j==2||j==5?h+' '+sym():h}</th>`).join('')+'</tr>'+KD.map((r,n)=>[n+1,tw(kname(r,i)),r]).filter(x=>!q||x[1].toLowerCase().includes(q)).map(([n,nm,r])=>`<tr><td>${n}</td><td${L2}>${esc(nm)}</td><td>${M(r[3]).toFixed(2)}</td><td class="${cls(r[4])}">${r[4]>0?'+':''}${r[4].toFixed(2)}%</td><td>${fmt(r[5])}</td><td>${fmt(M(r[6]*1e4))}</td><td>${r[7].toFixed(2)}</td><td>${fmt(r[8])}</td></tr>`).join('')}
-$('#kq').oninput=renderKnives;
 const GT=[['摩托手套','摩托手套'],['运动手套','運動手套'],['驾驶手套','駕駛手套'],['专业手套','專業手套'],['血猎手套','血獵手套'],['狂牙手套','狂牙手套'],['九头蛇手套','九頭蛇手套'],['裹手','裹手']];
-const GD='0,第三特种兵连,0,755.47,34.93,99,8.54,.26,1123;1,奶油细条纹,2,460,7.05,94,5.21,.91,428;2,龙拳,2,506.6,5.98,69,4.59,.81,448;1,奶油细条纹,3,421.67,2.71,737,36.8,.95,1380;2,逐沧浪,3,788.33,1.21,721,66.9,.95,859;3,日芒,3,733.13,1.13,476,42.5,1.09,573;3,青柠迷彩,0,2888,.71,54,16.1,1.03,567;2,花园,2,900,.4,75,8.18,1.66,376;4,染铜,3,365.67,.35,146,6.12,1.26,585;2,护卫,3,420.6,-.45,274,13,1.47,521;2,深红鹤服,1,983.73,-.65,316,36.9,.71,1230;0,第三特种兵连,1,218.2,-.74,1409,38.2,.86,2800;2,深红鹤服,3,751.67,-1.04,491,41.7,1,442;2,墨绿色调,3,164.93,-1.31,878,17,.97,1635;0,嘭！,2,303.8,-1.34,186,6.79,.78,622;3,狂澜,0,1967.27,-1.41,43,10,1.4,709;0,薄荷,3,1687,-1.91,32,6.43,.67,872;1,迈阿密风云,2,1743.47,-2.25,127,24.2,.91,961;2,青海波,3,385.73,-2.31,750,33.4,.8,1541;5,针尖,0,331.13,-2.43,233,10.1,.88,923;3,羽袭,2,1899,-2.5,35,8.44,.37,358;3,日芒,2,787.73,-2.5,72,6.7,.83,362;1,超导体,3,4271.2,-2.53,32,15.6,.8,763;3,黑皮书,2,1266.15,-2.55,53,7.1,.81,570;2,针织手套,0,1282.8,-2.61,60,8,1,508;3,狂澜,1,955.07,-2.61,281,33.8,.92,1502;0,清凉薄荷,3,844.22,-2.62,101,9.76,.81,605;7,防水布胶带,2,248.13,-2.67,237,7.06,.78,711;3,青柠迷彩,1,1365.13,-2.79,310,51.6,.9,1533;5,翡翠,3,376.13,-2.92,694,30.7,.87,1166;1,紫外狂潮,3,3149.5,-2.94,103,37.9,1.04,619;3,渐变大理石,3,558.8,-3.02,1029,68,.93,1600;0,交运,2,206.93,-3.17,518,12.6,.98,853;3,渐变之色,3,580,-3.19,900,64.2,.96,1697;3,可可伯爵,1,467.27,-3.19,265,14.6,1.07,1517;3,狂澜,2,954.5,-3.3,39,4.31,1.65,424;2,繁花似锦,2,717.47,-3.4,58,4.76,.81,495;1,猩红头巾,3,725.07,-3.43,519,43.4,.94,1373;3,青云狩,2,2196.07,-3.54,38,9.23,.23,426;7,钴蓝骷髅,1,957.07,-3.54,486,56.3,.73,5648;2,龙拳,0,1085.99,-3.62,95,11.7,.68,570;0,终点线,2,360,-3.62,164,7.27,.89,606;2,西装革履,2,586.33,-3.75,118,7.66,.94,741;0,终点线,0,747.2,-3.76,88,8.73,.93,1566;2,超越,2,239.33,-3.81,241,6.97,.66,694;3,黑皮书,0,2669.93,-3.84,41,12.9,1.05,581;0,交运,1,202.87,-3.85,3347,82.3,1.03,3269;1,寒霜,3,694.6,-3.91,529,43.3,.98,894;7,沙漠头巾,3,210,-3.92,501,12.9,1.03,1065;1,夜行衣,3,2429.4,-3.99,180,48.3,.83,1279;0,*嘣！*,3,468.67,-3.99,151,8.23,.94,523;2,逐沧浪,1,959.93,-4.03,354,38.3,.84,1481;6,红树林,0,195.8,-4.04,411,9.84,.71,2137;6,翡翠色调,3,185.8,-4.04,1297,28.5,.9,1364;3,青云狩,0,4388,-4.05,33,19,.65,533;3,羽袭,1,2086.47,-4.06,211,50.5,.75,2479;7,长颈鹿,1,220,-4.07,1384,39.2,.85,2925;2,王蛇,1,699.87,-4.12,778,64.5,.87,7741;2,繁花似锦,0,1948.5,-4.16,52,12.1,1.15,845;2,针织手套,2,582.6,-4.17,72,5.07,.89,541;4,焦炭,3,551.67,-4.21,97,6.37,1.06,349;3,深红之网,1,633.2,-4.26,875,65.6,.83,4859;1,紫外狂潮,1,4550,-4.36,103,62.2,.54,3239;1,紫罗兰珠绣,2,1082.47,-4.46,48,5.75,1.25,255;1,隐知,3,1668.13,-4.46,137,26.8,1.19,678;7,钴蓝骷髅,2,879.27,-4.52,156,15.7,.96,840;0,玳瑁,1,303.5,-4.6,1123,48.5,.78,3231;1,寒霜,0,1807.87,-4.61,58,11.7,.67,610;3,元勋,3,948.6,-4.61,163,18.3,1.03,620;1,猩红头巾,2,851.91,-4.63,117,10.8,.77,609;1,青铜形态,1,388.48,-4.63,1352,69.6,.84,3706;3,翠绿之网,3,1956.47,-4.65,86,19.1,1.4,387;2,青海波,0,823.4,-4.87,76,8.14,1.18,627;6,表面淬火,3,300.87,-4.91,478,17.2,.73,1324;7,云杉 DDPAT,3,579.27,-4.93,99,6.87,.95,284;1,隐知,2,2271.2,-4.96,45,10.7,.48,638;7,套印,3,352.27,-4.99,1269,53,.85,1982;3,深红之网,3,530,-4.99,745,45.9,.96,1593;7,屠夫,3,1133.6,-5.04,106,13.6,1.09,339;3,森林 DDPAT,3,579,-5.06,118,7.89,.84,494;7,警告！,2,590.27,-5.09,136,9.3,.85,737;1,炽烈之炎,3,572.6,-5.1,438,29.2,.86,991;3,羽袭,3,1470.6,-5.12,149,25.9,.89,615;4,蛇咬,3,421.53,-5.16,152,7.65,.96,358;0,第三特种兵连,2,220.13,-5.19,238,6.56,.77,901;1,弹弓,2,1332.2,-5.19,112,17,1.11,975;6,响尾蛇,3,164.93,-5.22,576,11.2,.87,910;2,繁花似锦,1,740.93,-5.27,311,27.7,.9,1556;2,逐沧浪,0,2847,-5.33,63,19.2,.88,699;7,警告！,3,553.87,-5.37,736,49,.86,1132;1,欧米伽,3,664.93,-5.38,1093,88.9,1.02,2373;1,青铜形态,0,708,-5.4,220,18.6,.66,1515;7,森林色调,1,213.9,-5.51,1307,35.6,.99,3219;1,猩红头巾,1,892.27,-5.52,575,61.7,.76,3168;7,警告！,0,889.33,-5.56,67,7.62,.96,1563;1,青铜形态,3,383.87,-5.57,1430,64.9,.96,1169;7,套印,0,677.47,-5.62,129,10.5,.96,2109;1,紫外狂潮,2,4048.47,-5.64,36,16.2,1.79,477;5,翡翠,1,380.53,-5.67,854,40.4,.78,2024;5,黄色斑纹,1,245.73,-5.73,1336,42,.86,2543'.split(';').map(x=>{const c=x.split(',');return[+c[0],tw(c[1]),+c[2],+c[3],+c[4],+c[5],+c[6],+c[7],+c[8]]});
-function renderGloves(){const l=L(),i=lang=='tw'?1:0,q=$('#gq').value.trim().toLowerCase(),L2=' style="text-align:left"';
- $('#gq').placeholder=l.ksr;
- $('#gtab').innerHTML='<tr>'+l.kth.map((h,j)=>`<th${j==1?L2:''}>${j==2||j==5?h+' '+sym():h}</th>`).join('')+'</tr>'+GD.map((r,n)=>[n+1,GT[r[0]][i]+'（★） | '+r[1]+'（'+KW[r[2]+1][i]+'）',r]).filter(x=>!q||x[1].toLowerCase().includes(q)).map(([n,nm,r])=>`<tr><td>${n}</td><td${L2}>${esc(nm)}</td><td>${M(r[3]).toFixed(2)}</td><td class="${cls(r[4])}">${r[4]>0?'+':''}${r[4].toFixed(2)}%</td><td>${fmt(r[5])}</td><td>${fmt(M(r[6]*1e4))}</td><td>${r[7].toFixed(2)}</td><td>${fmt(r[8])}</td></tr>`).join('')}
-$('#gq').oninput=renderGloves;
-const GL='2,逐沧浪,2,900,-34.46,72,7.07,.95,304;7,森林色调,0,308,-15.76,142,6.3,1.06,1661;2,青海波,2,393.33,-14.45,125,5.6,.65,397;2,王蛇,2,637.2,-14.43,186,13.4,.88,775;1,青铜形态,2,401.27,-14.19,251,12.4,.94,917;1,欧米伽,2,778.47,-13.76,206,18,.81,866;7,蟒蛇,0,408,-13.53,41,2.22,.94,1333;3,陆军少尉长官,3,400,-13.52,651,30.8,.94,1333;3,大腕,2,437,-13.25,199,10.3,.78,841;3,渐变大理石,2,644.13,-12.73,153,10.9,.87,591;1,大型猎物,0,961.13,-12.7,154,18.5,.72,1456;2,青海波,1,415.87,-12.68,369,18.5,.8,1516;1,双栖,3,1088,-12.34,678,85.8,1.07,1188;1,弹弓,1,1605.33,-12.32,322,62.9,.89,5405;1,迈阿密风云,0,5915.33,-12.11,90,64.8,1.05,4781;2,花园,3,837.4,-11.9,655,65.2,.88,759;3,老虎精英,0,1442.5,-11.89,46,10.3,.93,1857;2,西装革履,0,1436.41,-11.74,86,16.2,1.05,2071;0,多边形,2,493.47,-11.5,151,8.72,.94,657;0,嘭！,0,756.4,-11.42,87,7.99,.79,1812;2,蓝紫点子,2,567.2,-11.41,95,6.35,.95,299;6,红树林,1,156.73,-11.28,2821,55.7,.85,4211;1,欧米伽,0,1942.27,-11.23,97,22.8,.93,2522;7,防水布胶带,0,317.67,-11.17,268,11.2,.91,1132;3,渐变大理石,0,1705,-11.15,113,24.5,.99,1427;5,黄色斑纹,2,254.33,-11.14,163,5.01,.79,748;2,蓝紫格子,3,574.27,-11.14,712,50,.92,1362;2,蓝紫格子,0,1469,-10.88,167,31.6,1.13,1617;3,可可伯爵,3,402.07,-10.86,680,32.5,.98,1278;3,渐变之色,2,747,-10.71,146,13.6,.73,694;1,猩红头巾,0,1529,-10.7,113,20.9,.8,1421;3,可可伯爵,2,418.07,-10.69,115,5.81,.63,464;2,王蛇,3,544.8,-10.66,1032,65.9,1.03,1502;5,针尖,2,236.6,-10.59,186,5.48,.78,695;2,菱背蛇纹,3,467.8,-10.44,133,7.44,.9,519;3,黑皮书,3,1088.73,-10.38,329,41.9,1.04,688;3,大腕,3,414.87,-10.35,789,37.8,.91,1522;1,双栖,1,1393.33,-10.26,524,91.2,.82,6433;0,终点线,1,382.27,-10.19,416,19.4,.86,3212;2,墨绿色调,0,210.5,-10.16,464,13.5,.94,1344;2,雪豹,0,2590,-10.1,111,33.5,.93,1621;0,多边形,3,431.2,-10.1,925,46.1,.95,1456;6,表面淬火,2,307.33,-9.97,195,7.42,.84,711;1,欧米伽,1,890.13,-9.89,738,76.1,.85,5202;1,夜行衣,0,4178.5,-9.88,78,38.1,.93,1893;2,雪豹,3,1099.6,-9.81,378,48.2,.88,1196;1,双栖,0,2968,-9.76,119,40.2,.79,2833;0,小心烟雾弹,1,488.33,-9.76,551,34.5,.93,2686;1,寒霜,2,842.87,-9.75,84,7.86,.77,540;0,小心烟雾弹,0,868.33,-9.73,115,11.8,.89,1129;3,猎鹿,2,230,-9.73,283,8.1,.85,899;2,绯红列赞,2,324.93,-9.71,191,7.38,.63,720;3,一线特工,0,1276.8,-9.62,74,11.9,1.16,1675;7,沙漠头巾,0,311.53,-9.58,126,5.31,.85,1219;2,美洲豹女王,1,268.87,-9.57,1097,37.9,.81,3388;2,针织手套,1,570,-9.51,304,24.2,.79,1780;2,美洲豹女王,0,525,-9.5,149,9.36,.58,1300;7,钴蓝骷髅,0,1763.2,-9.37,95,18.5,.95,2172;0,小心烟雾弹,2,461.47,-9.35,162,8.98,.71,660;2,王蛇,0,2348.5,-9.29,76,20.5,1.13,3733;1,大型猎物,2,630,-9.27,118,8.31,.65,802;1,大型猎物,3,579.91,-9.18,426,29.7,.81,1392;1,赤色追风,0,1438.47,-9.14,43,7.53,.7,647;1,迈阿密风云,1,1897.07,-9.01,573,132,.98,7783;6,红树林,3,163.13,-8.97,564,11.1,.84,804;6,响尾蛇,2,168.27,-8.82,326,6.62,.78,746;7,长颈鹿,2,220.53,-8.79,242,6.5,.8,554;3,一线特工,1,578,-8.79,420,31.3,.77,4115;7,蟒蛇,2,230.87,-8.77,180,5.07,.98,610;6,表面淬火,0,458.87,-8.77,210,12.5,.88,1386;0,血压,3,399.27,-8.74,699,34,.97,1043;3,陆军少尉长官,0,833.33,-8.72,127,13.7,.74,1470;3,老虎精英,2,591.2,-8.7,82,6,.63,862;1,双栖,2,1293.8,-8.66,125,18,.72,961;1,弹弓,0,3868.13,-8.61,48,22.6,.71,1977;3,日芒,1,833.33,-8.5,231,25.6,.72,1639;2,超越,3,224.4,-8.49,1093,29.4,1.01,1426;5,黄色斑纹,0,372,-8.46,244,12,.86,1189;0,交运,0,285,-8.46,333,12.7,.8,1419;6,翡翠色调,1,179.6,-8.45,2994,66.7,1.13,3499;3,老虎精英,1,730.8,-8.44,286,24.6,.81,5192;3,青柠迷彩,3,1092.8,-8.43,286,37.3,1.14,750;7,防水布胶带,3,238.93,-8.39,438,13.2,.9,1095;6,翡翠色调,0,252.33,-8.35,395,13.2,.86,1080;7,沙漠头巾,2,215.2,-8.27,219,5.63,.96,733;7,套印,2,428.53,-8.27,117,5.55,.84,896;2,墨绿色调,2,170,-8.24,361,7.27,.91,994;7,警告！,1,600,-8.23,379,28.9,.75,4113;1,紫罗兰珠绣,1,1162.07,-8.19,259,34.2,1.03,1858;2,超越,0,422.5,-8.19,242,12.5,.96,1239;1,炽烈之炎,1,626.67,-8.17,356,26.8,.81,1700;0,嘭！,1,341.5,-8.17,569,25.6,.82,4584;3,陆军少尉长官,1,469.67,-8.16,490,26.7,.84,3728;1,赤色追风,1,697.73,-8.13,232,20.1,.87,1749;0,玳瑁,2,314.8,-8.13,227,8.71,.77,715;7,防水布胶带,1,240.38,-8.11,1858,54.6,.93,3859;5,翡翠,2,382.2,-8.07,132,6.18,.84,580;5,精神错乱,2,281.93,-8.05,184,5.92,.79,721;0,交运,3,201,-8.02,1654,39.4,.96,1150;7,套印,1,466.67,-8,561,32.2,.86,5332'.split(';').map(x=>{const c=x.split(',');return[+c[0],tw(c[1]),+c[2],+c[3],+c[4],+c[5],+c[6],+c[7],+c[8]]});
-function renderGL(){const l=L(),i=lang=='tw'?1:0,q=$('#gq2').value.trim().toLowerCase(),L2=' style="text-align:left"';
- $('#gq2').placeholder=l.ksr;
- $('#gtab2').innerHTML='<tr>'+l.kth.map((h,j)=>`<th${j==1?L2:''}>${j==2||j==5?h+' '+sym():h}</th>`).join('')+'</tr>'+GL.map((r,n)=>[n+1,GT[r[0]][i]+'（★） | '+r[1]+'（'+KW[r[2]+1][i]+'）',r]).filter(x=>!q||x[1].toLowerCase().includes(q)).map(([n,nm,r])=>`<tr><td>${n}</td><td${L2}>${esc(nm)}</td><td>${M(r[3]).toFixed(2)}</td><td class="${cls(r[4])}">${r[4]>0?'+':''}${r[4].toFixed(2)}%</td><td>${fmt(r[5])}</td><td>${fmt(M(r[6]*1e4))}</td><td>${r[7].toFixed(2)}</td><td>${fmt(r[8])}</td></tr>`).join('')}
-$('#gq2').oninput=renderGL;
-const SD='暗影双匕,澄澈之水,2,218.2,-2.06,2597,68.1,.99,2989;猎杀者匕首,澄澈之水,2,298.8,-4.21,2245,82.8,.84,2472;弯刀,澄澈之水,2,348.27,-3.89,1859,79.3,.91,1853;廓尔喀刀,夜色,2,260,-7.45,1856,59.8,.83,3629;求生匕首,外表生锈,4,224.13,-8.4,1817,52.3,.83,2411;廓尔喀刀,狩猎网格,2,215.2,-6.33,1807,48.4,.9,2400;廓尔喀刀,都市伪装,2,258.8,-9.27,1742,54.4,.93,2096;暗影双匕,自动化,2,252.33,-5.87,1712,53.7,.94,2251;廓尔喀刀,北方森林,2,223.13,-7.35,1707,47.8,.88,2314;求生匕首,虎牙,0,569.4,-2.51,1582,108,.93,2141;暗影双匕,自由之手,2,250.13,-6.76,1556,48.4,.82,1615;折刀,虎牙,0,358.5,-7.39,1511,67.3,.85,1786;暗影双匕,黑色层压板,2,218.47,-2.97,1482,39.6,.9,2024;廓尔喀刀,枯焦之色,2,232.53,-6.68,1455,44.6,.78,2514;廓尔喀刀,森林 DDPAT,2,232.87,-6.9,1448,42.3,.86,2561;廓尔喀刀,渐变之色,0,835.91,-6.73,1423,142,.97,5555;鲍伊猎刀,澄澈之水,2,282.33,-6.51,1411,50,.83,2148;系绳匕首,外表生锈,4,220.93,-4.94,1323,37.3,.86,1788;系绳匕首,虎牙,0,593.33,-7.23,1246,86.9,.82,1352;弯刀,自由之手,2,413.27,-5.56,1238,63.3,.92,1260;求生匕首,渐变大理石,0,669.8,-3.96,1237,97.5,.95,2059;求生匕首,森林 DDPAT,2,245.67,-9.33,1210,35.3,.73,2047;求生匕首,,99,275.47,-4.22,1206,41.6,.81,2692;折刀,外表生锈,4,218.8,-4.05,1179,31.2,.77,2359;流浪者匕首,虎牙,0,957.99,-5.91,1170,134,1,2142;鲍伊猎刀,自由之手,2,332.27,-4.21,1161,47.9,.9,1704;系绳匕首,渐变大理石,0,680.2,-2.08,1141,94.8,.96,1994;熊刀,外表生锈,4,292.93,-3.5,1119,40,.95,2403;折刀,渐变大理石,0,462.47,-4.34,1099,65.7,.88,1527;系绳匕首,,99,283,-5.47,1098,39.8,.8,2743;弯刀,自动化,2,508,-8.86,1091,69.9,.92,1558;暗影双匕,虎牙,0,373.91,-5.18,1054,46.9,.79,1698;猎杀者匕首,自由之手,2,327.5,-11.19,1049,44.2,.85,1719;暗影双匕,外表生锈,4,221,-4.95,1004,26.5,.76,1746;廓尔喀刀,深红之网,4,370.13,-11.08,984,44.3,.76,1735;求生匕首,大马士革钢,2,330.5,-2,979,39.1,.91,1087;暗影双匕,传说,4,273.73,-4.73,963,32.7,.95,970;鲍伊猎刀,自动化,2,409.91,-5.9,952,49.6,1.06,1592;弯刀,黑色层压板,2,329.5,-8.12,947,38.8,.82,1155;求生匕首,致命紫罗兰,2,331.13,-11.22,930,37.8,1,1070;求生匕首,狩猎网格,2,235.87,-5.09,919,25.9,.94,943;暗影双匕,传说,2,283.49,-7.27,906,33.1,.89,1605;折刀,致命紫罗兰,2,245.67,-7.98,906,27.8,.83,1105;穿肠刀,外表生锈,4,258.73,-6.79,905,28.4,.79,1600;鲍伊猎刀,黑色层压板,2,284.73,-8.46,903,32.3,.76,1700;系绳匕首,夜色,2,273.27,-8.91,896,29.6,.84,1192;系绳匕首,致命紫罗兰,2,365.47,-6.37,883,40,.93,1398;弯刀,传说,2,504.5,-8.26,875,56.2,.84,1289;鲍伊猎刀,传说,4,401.4,-8.44,871,41.6,.98,936;系绳匕首,致命紫罗兰,4,349,-1.04,869,36.9,1.02,1365;熊刀,渐变大理石,0,800,-6.33,859,84.7,.88,2448;折刀,,99,223.8,-5.41,859,26.1,.7,1806;求生匕首,枯焦之色,2,255,2.28,847,26.6,.87,1041;骷髅匕首,外表生锈,4,680,-10.53,847,69.5,1.01,2339;求生匕首,渐变之色,0,702.47,-5.51,839,71.9,.85,2328;系绳匕首,渐变之色,0,745,-8.21,836,76.3,1.01,1888;求生匕首,夜色,2,270,-9.05,826,26.5,.87,1043;猎杀者匕首,传说,2,467.6,-6.73,824,49.5,.84,1661;系绳匕首,狩猎网格,2,232.87,-7.13,824,23.2,.98,1353;流浪者匕首,大马士革钢,2,675.93,-2.75,824,67.1,1.03,1399;系绳匕首,森林 DDPAT,2,237.33,-17.42,823,23.7,.85,1075;系绳匕首,大马士革钢,2,305,-9.42,821,30,1.05,1165;鲍伊猎刀,外表生锈,4,256.93,-3.97,817,26.1,.83,1697;熊刀,虎牙,0,700,-9.16,812,66.9,.87,2384;暗影双匕,大马士革钢,2,253.4,-5.86,798,25.6,.93,1343;折刀,大马士革钢,2,232.47,-8.02,797,22.4,1.01,948;弯刀,外表生锈,4,300.87,-5.97,796,30.5,.72,1715;熊刀,大马士革钢,2,386.67,-5.16,796,36.6,.89,1578;暗影双匕,黑色层压板,3,220.47,-7.54,785,21,1.01,885;折刀,深红之网,2,385,-3.07,778,35.7,.93,870;弯刀,虎牙,0,761.2,-4.63,766,68.3,.93,1361;廓尔喀刀,,99,434.93,-8.12,762,42.1,.87,3340;流浪者匕首,外表生锈,4,445,-5.83,760,42,1.04,2109;流浪者匕首,北方森林,2,399,-9.27,755,37.3,.78,1135;折叠刀,虎牙,0,1130.91,-7.57,739,96.7,1.07,1373;廓尔喀刀,屠夫,1,628.8,-5.74,738,56.6,.84,2389;暗影双匕,渐变大理石,0,456.5,-8.88,737,41.6,.93,1111;求生匕首,北方森林,2,241.47,-.73,727,21.7,.81,1173;暗影双匕,澄澈之水,1,221.13,-8.79,727,20.1,.91,1129;猎杀者匕首,黑色层压板,2,311.47,-8.6,727,29.8,.75,1496;廓尔喀刀,北方森林,4,227.91,-2.75,720,20.5,.56,951;系绳匕首,北方森林,2,245,-13.64,719,21.4,.79,1265;鲍伊猎刀,大马士革钢,2,405.4,-6.72,714,34.4,.86,821;猎杀者匕首,传说,4,428,-4.5,710,36.5,.86,1430;猎杀者匕首,外表生锈,4,280,-3.79,706,24.5,.79,1775;穿肠刀,北方森林,2,272.47,-5.56,706,22.4,.96,1070;穿肠刀,虎牙,0,518.27,-11.77,697,44.2,.94,1186;穿肠刀,澄澈之水,2,284.07,-6.84,692,23.5,.79,918;暗影双匕,黑色层压板,4,217.73,-5.41,677,17.8,.86,1266;系绳匕首,枯焦之色,2,250.73,-6.58,666,20.6,1.02,1158;廓尔喀刀,表面淬火,4,455.8,-6.58,663,37.6,.76,2026;骷髅匕首,大马士革钢,2,1015,-5.87,653,81.2,1.15,1405;鲍伊猎刀,传说,2,432.33,-7.43,653,38.6,.8,1105;流浪者匕首,渐变大理石,0,1169.4,-7.8,652,93.8,1.06,2477;穿肠刀,渐变大理石,0,613.67,-6.34,645,48.7,.99,1490;弯刀,渐变大理石,0,905.58,-5.34,643,74.4,.85,1399;流浪者匕首,狩猎网格,2,373.5,-6.65,640,29.8,.81,1004;廓尔喀刀,深红之网,2,438.22,-6.86,640,35.9,.93,2468;暗影双匕,传说,3,274.33,-12.29,639,22,.97,673;求生匕首,人工染色,2,314.8,-6.46,637,25.6,1.04,917'.split(';').map(x=>{const c=x.split(',');return[tw(c[0]),tw(c[1]),+c[2],+c[3],+c[4],+c[5],+c[6],+c[7],+c[8]]});
-function renderSL(){const l=L(),q=$('#sq').value.trim().toLowerCase(),L2=' style="text-align:left"';
- $('#sq').placeholder=l.ksr;
- $('#stab').innerHTML='<tr>'+l.kth.map((h,j)=>`<th${j==1?L2:''}>${j==2||j==5?h+' '+sym():h}</th>`).join('')+'</tr>'+SD.map((r,n)=>[n+1,r[0]+(r[1]?' | '+r[1]:'')+(r[2]==99?'':'（'+KW[r[2]][1]+'）'),r]).filter(x=>!q||x[1].toLowerCase().includes(q)).map(([n,nm,r])=>`<tr><td>${n}</td><td${L2}>${esc(nm)}</td><td>${M(r[3]).toFixed(2)}</td><td class="${cls(r[4])}">${r[4]>0?'+':''}${r[4].toFixed(2)}%</td><td>${fmt(r[5])}</td><td>${fmt(M(r[6]*1e4))}</td><td>${r[7].toFixed(2)}</td><td>${fmt(r[8])}</td></tr>`).join('')}
-$('#sq').oninput=renderSL;
-const UD='0,交运,2,202.87,-3.85,3347,82.3,1.03,3259;6,响尾蛇,2,159.49,-7.97,3120,62.4,.84,3737;6,翡翠色调,2,179.6,-8.45,2994,66.7,1.13,3506;6,红树林,2,156.73,-11.28,2821,55.7,.85,4220;2,墨绿色调,2,161.49,-6.12,2785,54.6,.89,3826;7,防水布胶带,2,240.38,-8.11,1858,54.6,.93,3886;0,交运,4,201,-8.02,1654,39.4,.96,1144;3,猎鹿,2,229,-5.87,1474,44,.84,3611;0,玳瑁,4,294.93,-7.93,1455,51.4,.92,1659;7,沙漠头巾,2,212.8,-6.12,1447,37.4,.99,3105;1,青铜形态,4,383.87,-5.57,1430,64.9,.96,1181;0,第三特种兵连,2,218,-.74,1409,38.2,.86,2810;7,长颈鹿,2,220,-4.07,1384,39.2,.85,2926;0,嘭！,4,257.33,-7.74,1368,44.8,.95,1915;1,青铜形态,2,388.48,-4.63,1352,69.6,.84,3719;5,黄色斑纹,2,245.73,-5.73,1336,42,.86,2570;7,森林色调,2,213.47,-5.51,1307,35.6,.99,3234;6,翡翠色调,4,185.8,-4.04,1297,28.5,.9,1381;0,第三特种兵连,4,214.67,-5.89,1294,33.5,.84,1467;7,套印,4,352.27,-4.99,1269,53,.85,1986;2,超越,2,239.5,-7.38,1268,38.4,.86,3321;6,表面淬火,2,300.33,-6.6,1223,46.5,.85,4480;2,美洲豹女王,4,248.39,-6.39,1191,34.9,.8,1767;5,针尖,2,242.5,-6.1,1125,34.6,.88,2284;0,玳瑁,2,303.5,-4.59,1123,48.5,.78,3226;2,美洲豹女王,2,268.87,-9.57,1097,37.9,.81,3412;0,终点线,4,287.13,-6.91,1097,37.4,.98,1334;1,欧米伽,4,664.93,-5.38,1093,88.9,1.02,2361;2,超越,4,224.33,-8.49,1093,29.4,1.01,1435;7,森林色调,4,213,-7.98,1035,26.5,.74,1512;5,精神错乱,2,282.07,-6.22,1032,35.3,.82,2620;2,王蛇,4,544.8,-10.66,1032,65.9,1.03,1508;3,渐变大理石,4,558.8,-3.02,1029,68,.93,1583;2,绯红列赞,2,319.7,-7.63,1024,42.4,.78,2726;0,多边形,4,431.2,-10.1,925,46.1,.95,1474;3,渐变之色,4,580,-3.19,900,64.2,.96,1674;2,墨绿色调,4,164.93,-1.31,878,17,.97,1642;3,深红之网,2,633.2,-4.26,875,65.6,.83,4866;5,翡翠,2,380.53,-5.67,854,40.4,.78,2017;2,蓝紫格子,2,766.2,-5.83,832,79.9,.83,4390;7,钴蓝骷髅,4,820,-7.48,819,78.6,.98,1604;7,长颈鹿,4,216,-7.77,808,21.3,.92,1350;0,多边形,2,506.5,-7.81,801,52.2,.81,3222;0,小心烟雾弹,4,415,-6.65,798,39.1,.99,1651;3,大腕,4,414.87,-10.35,789,37.8,.91,1527;3,大腕,2,453.33,-6.1,782,43.5,.83,3631;5,黄色斑纹,4,237,-7.78,779,23.1,1.02,1667;2,王蛇,2,699.87,-4.12,778,64.5,.87,7776;7,蟒蛇,2,223.91,-6.45,769,22.5,.81,2597;3,一线特工,4,490,-6.66,762,44,.98,1098;2,青海波,4,382.53,-2.31,750,33.4,.8,1544;3,深红之网,4,525.67,-4.99,745,45.9,.96,1602;1,欧米伽,2,875.2,-9.89,738,76.1,.85,5239;1,奶油细条纹,4,421.67,2.71,737,36.8,.95,1383;7,警告！,4,553.87,-5.37,736,49,.86,1140;2,逐沧浪,4,788.33,1.21,721,66.9,.95,886;2,蓝紫格子,4,574.27,-11.14,712,50,.92,1385;2,西装革履,4,495.27,-6.77,709,41.2,1.01,1522;0,血压,4,399.27,-8.74,699,34,.97,1037;3,猎鹿,4,222.33,-6.55,695,18.9,.94,1320;5,翡翠,4,365.47,-2.92,694,30.7,.87,1173;3,可可伯爵,4,402.47,-10.86,680,32.5,.98,1266;1,双栖,4,1088,-12.34,678,85.8,1.07,1189;3,渐变大理石,2,696.33,-6.29,672,58.8,.91,3652;2,花园,4,837.4,-11.9,655,65.2,.88,778;3,陆军少尉长官,4,400,-13.52,651,30.8,.94,1334;2,西装革履,2,615.2,-7.72,611,43.8,.84,4406;3,渐变之色,2,841.8,-6.48,606,66.8,.86,6758;2,雪豹,2,1330.2,-6.15,600,92.6,.76,4001;2,绯红列赞,4,296.53,-6.94,590,21,.87,1373;0,血压,2,594.2,-5.81,580,41.8,.89,2491;3,老虎精英,4,494.5,-6.93,579,33.2,1.08,1363;6,响尾蛇,4,164.93,-5.22,576,11.2,.87,914;1,猩红头巾,2,892.27,-5.52,575,61.7,.76,3167;1,迈阿密风云,2,1897.07,-9,573,132,.98,7796;5,精神错乱,4,271.2,-6.37,571,18.7,.83,1445;0,嘭！,2,341.5,-8.17,569,25.6,.82,4585;1,大型猎物,2,654,-7.48,564,47,.77,4070;6,红树林,4,163.13,-8.97,564,11.1,.84,792;7,套印,2,466.07,-8,561,32.2,.86,5355;0,小心烟雾弹,2,488.33,-9.76,551,34.5,.93,2683;1,寒霜,4,694.6,-3.94,529,43.3,.98,885;1,双栖,2,1393.33,-10.27,524,91.2,.82,6441;1,猩红头巾,4,725.53,-3.43,519,43.4,.94,1379;0,交运,3,206.93,-3.17,518,12.6,.98,861;7,蟒蛇,4,220,-7.17,509,13.7,.78,1150;1,迈阿密风云,4,1292.73,-7.87,501,75.5,1.03,1590;7,沙漠头巾,4,210,-3.92,501,12.9,1.03,1069;1,赤色追风,4,550.74,-5.78,498,33,.93,1031;2,深红鹤服,4,751.67,-1.04,491,41.7,1,446;3,陆军少尉长官,2,469.67,-8.16,490,26.7,.84,3726;2,蓝紫点子,4,535.27,-7.53,489,30.6,1.02,970;7,钴蓝骷髅,2,957.07,-3.54,486,56.3,.73,5655;2,繁花似锦,4,630,-7.77,485,37.3,.82,1258;6,表面淬火,4,300.8,-4.91,478,17.2,.73,1327;3,日芒,4,733.13,1.13,476,42.5,1.09,580;2,龙拳,4,438.07,-7.62,475,24.1,.88,1176;2,墨绿色调,1,210.5,-10.17,464,13.5,.94,1339;2,针织手套,4,522.2,-7.8,460,28.2,1.03,822;2,蓝紫点子,2,556.53,-5.76,452,29.5,.78,1497'.split(';').map(x=>{const c=x.split(',');return[+c[0],tw(c[1]),+c[2],+c[3],+c[4],+c[5],+c[6],+c[7],+c[8]]});
-function renderUL(){const l=L(),q=$('#uq').value.trim().toLowerCase(),L2=' style="text-align:left"';
- $('#uq').placeholder=l.ksr;
- $('#utab').innerHTML='<tr>'+l.kth.map((h,j)=>`<th${j==1?L2:''}>${j==2||j==5?h+' '+sym():h}</th>`).join('')+'</tr>'+UD.map((r,n)=>[n+1,GT[r[0]][1]+'（★） | '+r[1]+'（'+KW[r[2]][1]+'）',r]).filter(x=>!q||x[1].toLowerCase().includes(q)).map(([n,nm,r])=>`<tr><td>${n}</td><td${L2}>${esc(nm)}</td><td>${M(r[3]).toFixed(2)}</td><td class="${cls(r[4])}">${r[4]>0?'+':''}${r[4].toFixed(2)}%</td><td>${fmt(r[5])}</td><td>${fmt(M(r[6]*1e4))}</td><td>${r[7].toFixed(2)}</td><td>${fmt(r[8])}</td></tr>`).join('')}
-$('#uq').oninput=renderUL;
-function renderVol(){const sh=srcK!='sim';$('.seg').style.display=$('#chart').parentNode.style.display=$('#meta').style.display=sh?'':'none';if(sh)return;
- const V=[['匕首',305350,2.53e8],['手套',129061,8.25e7]];
+function renderVol(){const sh=srcK!='snap';$('.seg').style.display=$('#chart').parentNode.style.display=$('#meta').style.display=sh?'':'none';if(sh)return;
+ const V=META.legacy_summary.totals;
  $('#kpi').innerHTML=V.map(([n,q,t])=>`<div><b>${fmt(q)}</b><span>${n} 30 日成交件數（日均 ${fmt(q/30)}）</span></div><div><b>${fmt(M(t))}</b><span>${n} 30 日成交額（${sym()}），平均每件 ${fmt(M(t/q))}</span></div>`).join('')}
-function allD(){const g=GL.map(r=>[tw(GT[r[0]][1]+' | '+r[1]+'（'+KW[r[2]+1][1]+'）'),0,r[3],r[4]/100,r[5],r[6]*1e4,r[7],r[8]]);return REAL.rows.map(r=>[r[0],0,r[2],r[3],r[4],r[5],r[6],r[7]]).concat(g)}
+let bf='all';
+const SG={b:['觀察機會','--ac'],n:['持續觀察','--dn'],w:['先觀望','--wn'],h:['短線偏熱','--up'],t:['樣本太薄','--mu']};
+const sigOf=x=>x.s<40||x.l<=60?'t':x.ch>=10?'h':x.ch<=-10?(x.v>=1?'b':'w'):'n';
+function renderBuy(){const q=$('#bq2').value.trim().toLowerCase(),A=allRec();
+ A.forEach(x=>{x.g=sigOf(x);x.sc={b:100,n:50,w:30,h:10,t:0}[x.g]+(-x.ch)*.5+(x.v-1)*8+Math.log10(Math.max(x.s,1))*3});
+ const ka=A.filter(x=>x.kind=='k').length,top=[...A].sort((a,b)=>b.sc-a.sc).slice(0,100),cnt={},cA={};A.forEach(x=>cA[x.g]=(cA[x.g]||0)+1);top.forEach(x=>cnt[x.g]=(cnt[x.g]||0)+1);
+ $('#bmk').innerHTML=`<div><b class="${cls(REAL.cat[2][1])}">${pc(REAL.cat[2][1])}</b><span>大盤 30 日（匕首 ${pc(REAL.cat[0][1])}、手套 ${pc(REAL.cat[1][1])}；指數為上次匯入，未隨本次榜單更新）</span></div><div><b>${A.length}</b><span>分析樣本：刀 ${ka} 件、手套 ${A.length-ka} 件；全部中先觀望 ${cA.w||0}、短線偏熱 ${cA.h||0}、樣本太薄 ${cA.t||0}</span></div><div><b>${cnt.b||0}</b><span>前 100 名中「觀察機會」的件數</span></div>`;
+ $('#bchips').innerHTML=[['all','全部 '+top.length]].concat(Object.keys(SG).filter(k=>cnt[k]).map(k=>[k,SG[k][0]+' '+(cnt[k]||0)])).map(([k,t])=>`<button data-f="${k}" aria-pressed="${bf==k}">${t}</button>`).join('');
+ const ref=x=>x.g=='b'?`${M(x.p).toFixed(0)} → 再跌 5% 約 ${M(x.p*.95).toFixed(0)}`:x.g=='h'?`回檔至約 ${M((x.p+x.p/(1+x.ch/100))/2).toFixed(0)}`:x.g=='n'?'現價附近':x.g=='w'?'量比 ≥ 1 再看':'—',
+  tip=x=>{const c=Math.abs(x.ch).toFixed(1),v=x.v.toFixed(2);return{t:`30 日只成交 ${x.s} 件、掛單 ${x.l} 件，樣本太薄，價格容易被單筆交易扭曲。`,h:`30 日已漲 ${c}%，短線漲多，價格可能偏熱。`,n:`30 日漲跌 ${pc(x.ch/100)}，沒有明顯折價或過熱。`,b:`30 日跌 ${c}%，量比 ${v}（量能放大），賣壓可能正在釋放，列為觀察機會（不代表會反彈）。`,w:`30 日跌 ${c}%，量比只有 ${v}，縮量下跌，尚無止跌訊號。`}[x.g]},
+  act=x=>x.s>=500?'高':x.s>=100?'中':'低',H=['名次','飾品','現價 '+sym(),'30 日漲跌','量比','30 日成交','成交活躍度','掛單','判斷','參考價位 '+sym()],BK=[o=>o.i,o=>o.x.nm,o=>o.x.p,o=>o.x.ch,o=>o.x.v,o=>o.x.s,o=>o.x.s,o=>o.x.l,o=>o.x.sc,o=>o.x.p];
+ $('#btab').innerHTML='<tr>'+H.map((h,j)=>hd('btab',h,j,j==1?'text-align:left':'')).join('')+'</tr>'+srt('btab',top.map((x,i)=>({x,i})),BK).filter(({x})=>(bf=='all'||x.g==bf)&&(!q||x.nm.toLowerCase().includes(q))).map(({x,i})=>`<tr><td>${i+1}</td><td style="text-align:left">${fn(x.nm)}</td><td>${M(x.p).toFixed(2)}</td><td class="${cls(x.ch)}">${x.ch>0?'+':''}${x.ch.toFixed(2)}%</td><td>${x.v.toFixed(2)}</td><td>${fmt(x.s)}</td><td>${act(x)}</td><td>${fmt(x.l)}</td><td style="text-align:center"><span class="tag" title="${esc(tip(x))}" style="color:var(${SG[x.g][1]});margin-left:0">${SG[x.g][0]}</span></td><td>${ref(x)}</td></tr>`).join('');
+ $('#wd').textContent='說明：「判斷」依 30 日漲跌、量比、成交量的簡單規則產生，只用來輔助觀察，不代表未來價格走勢，也不是買賣建議。成交活躍度依 30 日成交件數：500 件以上為高、100–499 為中、不到 100 為低。滑鼠移到「判斷」上可看原因；參考價位是規則換算，不是預測。「歷史價格位置」需要逐日價格，目前榜單只有 30 日累計，因此暫未提供。'}
+$('#bq2').oninput=renderBuy;$('#bchips').onclick=e=>{const b=e.target.closest&&e.target.closest('button');if(b){bf=b.dataset.f;renderBuy()}};
 function renderDrop(){const l=L(),a=allD().sort((x,y)=>x[3]-y[3]),ok=a.filter(r=>r[4]>=40&&r[7]>60),foc=a.filter(r=>/蝴蝶刀|骷髅匕首|M9 刺刀|爪子刀/.test(r[0]));
- $('#drop').innerHTML='<tr>'+l.rth.map((h,j)=>`<th>${j==1||j==4?h+' '+sym():h}</th>`).join('')+'</tr>'+a.slice(0,10).map((r,i)=>`<tr><td>${i+1}. ${esc(r[0])}</td><td>${M(r[2]).toFixed(2)}</td><td class="${cls(r[3])}">${pc(r[3])}</td><td>${fmt(r[4])}</td><td>${fmt(M(r[5]))}</td><td>${r[6].toFixed(2)}</td><td>${fmt(r[7])}</td></tr>`).join('');
- $('#recs').innerHTML=[...foc].sort((x,y)=>((y[4]<40||y[7]<=60)-(x[4]<40||x[7]<=60))*-1||((y[3]*-100+(y[6]-1)*10)-(x[3]*-100+(x[6]-1)*10))).map(r=>{const t=(r[4]<40||r[7]<=60)?'t':r[6]>=1?'u':'d',c=Math.abs(r[3]*100).toFixed(1),v=r[6].toFixed(2),ex=r[3]<=-.3?' 跌幅超過三成，先確認是否有改版或單筆異常成交。':'';
-  return `<div class="rec"><h3>${esc(r[0])}<span class="tag" style="color:var(${t=='u'?'--up':t=='t'?'--mu':'--wn'})">${l.rsg[t]}</span></h3><p>${t=='t'?l.rsig.t(r[4],r[7]):l.rsig[t](c,v)}${ex}</p></div>`}).join('');
- $('#wd').textContent=`只關注蝴蝶刀、骷髅匕首、M9 刺刀、爪子刀：榜單中共 ${foc.length} 件，其中 ${foc.filter(r=>r[4]<40||r[7]<=60).length} 件樣本過薄。`}
+ $('#drop').innerHTML='<tr>'+l.rth.map((h,j)=>`<th>${j==1||j==4?h+' '+sym():h}</th>`).join('')+'</tr>'+a.slice(0,10).map((r,i)=>`<tr><td>${i+1}. ${fn(r[0])}</td><td>${M(r[2]).toFixed(2)}</td><td class="${cls(r[3])}">${pc(r[3])}</td><td>${fmt(r[4])}</td><td>${fmt(M(r[5]))}</td><td>${r[6].toFixed(2)}</td><td>${fmt(r[7])}</td></tr>`).join('');}
+function fn(n,no){const e=esc(n),im=no?'':`<a class="im" href="https://www.bing.com/images/search?q=${encodeURIComponent('CS2 '+String(n).replace('（★）','').replace('™',''))}" target="_blank" rel="noopener" title="搜尋圖片">圖</a>`,m=e.match(/^(.*)（([^（）]*)）$/);if(!m)return '<span class="star">★</span> '+e.replace('（★）','')+im;const st=m[2].startsWith('StatTrak™ ');return '<span class="star">★</span> '+m[1].replace('（★）','')+'<span class="wr">'+(st?'<b class="st">StatTrak™</b> '+m[2].slice(10):m[2])+'</span>'+im}
 function load(rows,k){const st=analyze(rows);if(st.stats.length<10||st.dates.length<10)throw new Error('x');state=st;srcK=k;render()}
 function csvLine(x){const o=[];let c='',q=false;for(const ch of x){if(ch=='"')q=!q;else if(ch==','&&!q){o.push(c);c=''}else c+=ch}o.push(c);return o}
 function agg(list){const m={};list.forEach(([d,n,p,v])=>{if(!(p>0)||!(v>=0)||!d||!n)return;n=String(n).replace(/^★\s*/,'').trim();n=ALIAS[n]||ALIAS[norm(n)]||n;if(!KG.test(n))return;const k=d+'|'+n,e=m[k]=m[k]||{d,n,pv:0,v:0,ps:0,c:0};e.pv+=p*v;e.v+=v;e.ps+=p;e.c++});return Object.values(m).map(e=>[e.d,e.n,+(e.v?e.pv/e.v:e.ps/e.c).toFixed(2),e.v])}
@@ -225,9 +231,635 @@ $('#ltw').onclick=()=>setLang('tw');$('#lcn').onclick=()=>setLang('cn');
 $('#bq').onclick=()=>{mode='q';$('#bq').setAttribute('aria-pressed',true);$('#bt').setAttribute('aria-pressed',false);chart()};
 $('#bt').onclick=()=>{mode='t';$('#bt').setAttribute('aria-pressed',true);$('#bq').setAttribute('aria-pressed',false);chart()};
 $('#go').onclick=()=>apply($('#csv').value);
-$('#reset').onclick=()=>{load(gen(),'sim');$('#msg').textContent=''};
+$('#reset').onclick=()=>{state=null;srcK='snap';$('#msg').textContent='';render()};
 $('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>apply(r.result);r.readAsText(f)};
-load(gen(),'sim');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let DS={},META=null;
+
+
+let UPD='';const SO={};
+function srt(tid,arr,K){const s=SO[tid],k=s&&K[s.c];return k?[...arr].sort((a,b)=>{const x=k(a),y=k(b);return(typeof x=='string'?x.localeCompare(y,'zh'):x-y)*s.d}):arr}
+function hd(tid,h,j,st){const s=SO[tid],on=s&&s.c==j;return `<th data-t="${tid}" data-c="${j}" style="${st||''}" aria-sort="${on?(s.d>0?'ascending':'descending'):'none'}" title="點擊排序">${h}${on?(s.d>0?' ▲':' ▼'):''}</th>`}
+document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('th[data-t]');if(!t)return;const id=t.dataset.t,c=+t.dataset.c,s=SO[id],f=c==1&&id!='rtab'&&id!='btab'||c==0&&id=='rtab'||c==1&&id=='btab'?1:-1;SO[id]=!s||s.c!=c?{c,d:f}:s.d==f?{c,d:-f}:null;({ktab:renderKnives,gtab:renderGloves,gtab2:renderGL,stab:renderSL,utab:renderUL,rtab:renderReal,btab:renderBuy})[id]()});
+function tbl(tid,qid,D){const l=L(),tt=tid.slice(1),q=$(qid).value.trim().toLowerCase(),H=lang=='tw'?['名次','飾品','現價','30 日漲跌','30 日前價（推算）','30 日成交','成交額','量比','掛單']:['名次','饰品','现价','30 日涨跌','30 日前价（推算）','30 日成交','成交额','量比','挂单'];$(qid).placeholder=l.ksr;
+ const K=[x=>x.n,x=>x.nm,x=>x.r[1],x=>x.r[2],x=>x.r[1]/(1+x.r[2]/100),x=>x.r[3],x=>x.r[4],x=>x.r[5],x=>x.r[6]];
+ const A=srt(tt,D.map((r,n)=>({n:n+1,nm:lang=='tw'?tw(r[0]):r[0],r})),K).filter(x=>!q||x.nm.toLowerCase().includes(q));
+ $(tid).innerHTML='<tr>'+H.map((h,j)=>hd(tt,[2,4,6].includes(j)?h+' '+sym():h,j,j==1?'text-align:left':'')).join('')+'</tr>'+A.map(({n,nm,r})=>`<tr><td>${n}</td><td style="text-align:left">${fn(nm)}</td><td>${M(r[1]).toFixed(2)}</td><td class="${cls(r[2])}">${r[2]>0?'+':''}${r[2].toFixed(2)}%</td><td>${M(r[1]/(1+r[2]/100)).toFixed(2)}</td><td>${fmt(r[3])}</td><td>${fmt(M(r[4]*1e4))}</td><td>${r[5].toFixed(2)}</td><td>${fmt(r[6])}</td></tr>`).join('')}
+function renderKnives(){tbl('#ktab','#kq',DS.KG)}function renderGloves(){tbl('#gtab','#gq',DS.GG)}function renderGL(){tbl('#gtab2','#gq2',DS.GL)}function renderSL(){tbl('#stab','#sq',DS.KS)}function renderUL(){tbl('#utab','#uq',DS.GS)}
+$('#kq').oninput=renderKnives;$('#gq').oninput=renderGloves;$('#gq2').oninput=renderGL;$('#sq').oninput=renderSL;$('#uq').oninput=renderUL;
+function allD(){return DS.KL.concat(DS.GL).map(r=>[tw(r[0]),0,r[1],r[2]/100,r[3],r[4]*1e4,r[5],r[6]])}
+function allRec(){const o=new Map();Object.keys(DS).forEach(k=>DS[k].forEach(r=>{const nm=tw(r[0]);if(!o.has(nm))o.set(nm,{nm,kind:r[7],p:r[1],ch:r[2],s:r[3],t:r[4],v:r[5],l:r[6]})}));return[...o.values()]}
+
+function initData(d){META=d.meta;UPD=META.updated_at;DS=d.legacy;initNames(d.nameMap);REAL.cat=META.legacy_summary.cat;REAL.d=UPD;REAL.rows=DS.KL.map(r=>[tw(r[0]),r[0],r[1],r[2]/100,r[3],r[4]*1e4,r[5],r[6],null])}
+if(typeof HistoryChart!='undefined')HistoryChart.init({lang:()=>lang,money:M,sym,fmt,pc,cls,esc});
+$('#stamp').textContent='資料載入中… / 数据加载中…';
+CSStore.load('.').then(d=>{initData(d);render()}).catch(e=>{$('#stamp').textContent='資料載入失敗 / 数据加载失败：'+e.message;console.error(e)});
 </script>
 </body>
 </html>
